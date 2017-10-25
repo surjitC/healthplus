@@ -38,6 +38,9 @@ app.get('/', (req, res) => {
 app.get('/about', (req, res) => {
 	res.render('global/about');
 });
+app.get('/login', (req, res) => {
+	res.render('global/login');
+});
 
 
 //----------LISTENING-----------
