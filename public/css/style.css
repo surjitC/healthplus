@@ -1,0 +1,13 @@
+#search {
+  width: 0px;
+  transition: 300ms ease-in-out;
+}
+
+#search:focus {
+  width: 300px;
+}
+
+.search-icon {
+  position: relative;
+  top: -10px;
+}
