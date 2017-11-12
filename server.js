@@ -15,8 +15,9 @@ const passport = require('passport');
 
 
 //-----------MIDDLEWARE------------
-app.use(express.static('public'));
 app.use(morgan('dev'));
+app.use('/', express.static('public'));
+app.use('/login', express.static('public'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
@@ -41,7 +42,15 @@ app.get('/about', (req, res) => {
 app.get('/login', (req, res) => {
 	res.render('global/login');
 });
-
+app.get('/login/user', (req, res) => {
+	res.render('global/userLogin');
+});
+app.get('/login/doctor', (req, res) => {
+	res.render('global/doctorLogin');
+});
+app.get('/login/professional', (req, res) => {
+	res.render('global/professionalLogin');
+});
 
 //----------LISTENING-----------
 app.listen(8080, (err) => {
