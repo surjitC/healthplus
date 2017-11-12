@@ -11,3 +11,18 @@
   position: relative;
   top: -10px;
 }
+
+.carousel {
+  padding: 0px;
+  margin: 0px;
+}
+
+.carousel-one > img {
+  background: lightblue;
+}
+.carousel-two > img {
+  background: lightcoral
+}
+.carousel-three > img {
+  background: lightgray;
+}
