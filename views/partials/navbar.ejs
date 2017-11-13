@@ -3,8 +3,57 @@
   <div class="uk-navbar-left">
     <a class="uk-navbar-item uk-logo" href="/">Health Plus</a>
   </div>
-  
-  <div class="uk-navbar-right">    
+
+  <div class="uk-navbar-right uk-hidden@l">
+    <a href="#offcanvas-menu" uk-icon="icon: menu" class="hamburger" uk-toggle></a>
+    <div id="offcanvas-menu" uk-offcanvas>
+      <div class="uk-offcanvas-bar uk-flex uk-flex-column">
+        <ul class="uk-nav uk-nav-primary uk-nav-center uk-margin-auto-vertical">
+          <li class="uk-nav-header">
+            <a href="/login">Login | Signup</a>
+          </li>
+          <li class="uk-nav-divider"></li>
+          <li class="uk-parent uk-nav-header">
+              <a href="#">Products</a>
+              <ul class="uk-nav-sub">
+                  <li><a href="#">Medicines</a></li>
+                  <li><a href="#">Diets & Supplements</a></li>
+                  <li><a href="#">Bodycare</a></li>
+                  <li><a href="#">Health & Fitness</a></li>
+              </ul>
+          </li>
+          <li class="uk-nav-divider"></li>
+          <li class="uk-parent uk-nav-header">
+            <a href="#">Services</a>
+            <ul class="uk-nav-sub">
+              <li><a href="#">Yoga Trainer</a></li>
+              <li><a href="#">Personal Trainer</a></li>
+              <li><a href="#">Home Masseur</a></li>
+              <li><a href="#">Home Testing</a></li>    
+            </ul>
+          </li>
+          <li class="uk-nav-divider"></li>
+          <li class="uk-nav-header">
+            <a href="#">Ambulance</a>
+          </li>
+          <li class="uk-nav-header">
+            <a href="#">Nearby Hospitals</a>
+          </li>
+          <li class="uk-nav-header">
+            <a href="#">Blog</a>
+          </li>
+          <li class="uk-nav-header">
+            <a href="#">Testimonials</a>
+          </li>
+          <li class="uk-nav-header">
+            <a href="#">Contact Us</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="uk-navbar-right uk-visible@l">    
     <ul class="uk-navbar-nav">
       <li>
         <a href="#">Products</a>
