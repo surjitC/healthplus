@@ -11,8 +11,9 @@ const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const flash = require('express-flash');
 const passport = require('passport');
-//---------FILES-----------
 
+//---------FILES-----------
+const globalRoutes = require('./routes/global');
 
 //-----------MIDDLEWARE------------
 app.use(morgan('dev'));
@@ -33,24 +34,7 @@ app.engine('ejs', ejsMate);
 app.set('view engine', 'ejs');
 
 //---------ROUTES-----------
-app.get('/', (req, res) => {
-	res.render("global/landing");
-});
-app.get('/about', (req, res) => {
-	res.render('global/about');
-});
-app.get('/login', (req, res) => {
-	res.render('global/login');
-});
-app.get('/login/user', (req, res) => {
-	res.render('global/userLogin');
-});
-app.get('/login/doctor', (req, res) => {
-	res.render('global/doctorLogin');
-});
-app.get('/login/professional', (req, res) => {
-	res.render('global/professionalLogin');
-});
+app.use(globalRoutes);
 
 //----------LISTENING-----------
 app.listen(8080, (err) => {
