@@ -6,6 +6,9 @@ body{
 .hamburger {
   padding-right: 20px;
 }
+.carousel > ul{
+	height: 60vh !important;
+}
 .products{
 	padding: 40px;
 	background-color: #dcdcdc;
