@@ -1,8 +1,4 @@
-body{
-	padding: 0;
-	margin: 0;
-	background-color: #FEFBF7;
-}
+/* navbar */
 .navbar-login-button > a > button {
 	border: 2px solid #BDBDBD;
 	border-radius: 5px;
@@ -16,17 +12,38 @@ body{
 .hamburger {
   padding-right: 20px;
 }
+
+/* landing page */
+body{
+	padding: 0;
+	margin: 0;
+	background-color: #FEFBF7;
+}
+
 .carousel > ul{
 	height: 60vh !important;
 }
+
 .products{
 	padding: 40px;
 	background-color: #dcdcdc;
 }
+
 .uk-h3,.uk-card-body{
 	text-align: center;
 }
+
 .services{
 	padding: 40px;
 	background-color: #FEFBF7;
+}
+
+/* login/signup page */
+.uk-button-text > a, .uk-button-text > a:hover, .uk-button-text > a:active {
+	color: black;
+	text-decoration: none;
+}
+
+.login-form {
+	text-align: center;
 }
