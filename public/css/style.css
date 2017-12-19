@@ -47,3 +47,24 @@ body{
 .login-form {
 	text-align: center;
 }
+
+.signup-form {
+	text-align: center;
+}
+
+.signup-svg > img {
+	width: 100px;
+	height: 100px;
+	-webkit-filter: grayscale(100%);
+	filter: grayscale(100%);
+}
+
+.signup-svg > img:hover, .signup-svg > img:active {
+	-webkit-filter: grayscale(0%);
+	filter: grayscale(0%);
+}
+
+.signup-moving-gender {
+	-webkit-filter: grayscale(0%) !important;
+	filter: grayscale(0%) !important;
+}
