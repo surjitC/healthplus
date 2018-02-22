@@ -8,9 +8,16 @@
 	border: 2px solid #90CAF9;
 	color: #90CAF9;
 }
-
+.heading-color{
+	color: #FFFAFA;
+	padding-top: 10px;
+}
 .hamburger {
   padding-right: 20px;
+}
+
+.evendiv{
+	background-color: #c0c0c0;
 }
 
 /* landing page */
