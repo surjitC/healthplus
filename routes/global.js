@@ -1,5 +1,8 @@
 const express = require('express');
 const app = express();
+const mongoose = require('mongoose');
+
+const User = require('../models/Users');
 
 app.get('/', (req, res) => {
 	res.render("global/landing");
@@ -52,5 +55,21 @@ app.get('/login', (req, res) => {
 app.get('/signup', (req, res) => {
 	res.render('global/signup');
 });
+app.post('/signup', (req, res) => {
+	// res.json(req.body);
+	let user = new User();
+	user.firstName = req.body.firstName;
+	user.lastName = req.body.lastName;
+	user.email = req.body.email;
+	user.password = req.body.password;
+	user.location = req.body.location;
+	User.findOne({ email: req.body.email }, (err, existingUser) => {
+		if (existingUser) {
+			console.log("email exists");
+		} else {
+			user.save();
+		}
+	});
 
+});
 module.exports = app;

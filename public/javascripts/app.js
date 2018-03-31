@@ -1,12 +1,13 @@
 $(document).ready(function() {
 
-  gender = '';
-  firstName = '';
-  lastName = '';
-  email = '';
-  password = '';
-  cPassword= '';
-  type='';
+  var gender = '';
+  var firstName = '';
+  var lastName = '';
+  var email = '';
+  var password = '';
+  var cPassword= '';
+  var location = '';
+  var type='';
 
   $("#signup-gender-man").on('click', function() {
     $('#signup-gender-man').addClass('signup-selected-gender');
@@ -79,26 +80,39 @@ $(document).ready(function() {
       return false;
     }
   }
-
+  $('#signup-location').change(function() {
+    location = this.value;
+    if(location.length > 0) {
+      $('.signup-next-location').removeClass('hidden');
+    } else {
+      $('.signup-next-location').addClass('hidden');
+    }
+  });
   $("#signup-type-user").on('click', function() {
     $("#signup-type-user").addClass("signup-selected-type");
     $("#signup-type-doctor").removeClass("signup-selected-type");
     $("#signup-type-professional").removeClass("signup-selected-type")
     type="user";
-    $('#signup-chosen-type').text("User ");
+    // $('#signup-chosen-type').text("User ");
+    $('.signup-submit').removeClass('hidden');
   });
   $("#signup-type-doctor").on('click', function() {
     $("#signup-type-doctor").addClass("signup-selected-type");
     $("#signup-type-user").removeClass("signup-selected-type");
     $("#signup-type-professional").removeClass("signup-selected-type")
     type="doctor";
-    $('#signup-chosen-type').text("Doctor ");
+    // $('#signup-chosen-type').text("Doctor ");
+    $('.signup-submit').removeClass('hidden');
   });
   $("#signup-type-professional").on('click', function() {
     $("#signup-type-professional").addClass("signup-selected-type");
     $("#signup-type-doctor").removeClass("signup-selected-type");
     $("#signup-type-user").removeClass("signup-selected-type")
     type="professional";
-    $('#signup-chosen-type').text("Professional ");
+    $('.signup-submit').removeClass('hidden');
+  });
+
+  $('.signup-submit').on('click', function() {
+    $('.signup-form').submit();
   });
 });

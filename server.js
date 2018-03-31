@@ -11,9 +11,20 @@ const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const flash = require('express-flash');
 const passport = require('passport');
+const mongoose = require('mongoose');
 
 //---------FILES-----------
 const globalRoutes = require('./routes/global');
+const config = require('./config');
+
+//---------DB-Configuration---------
+mongoose.connect(config.dbUrl, (err) => {
+	if (err) {
+		console.log('Unable to connect');
+	} else {
+		console.log('connected to db');
+	}
+})
 
 //-----------MIDDLEWARE------------
 app.use(morgan('dev'));
