@@ -1,0 +1,108 @@
+<%- layout('layout') -%>
+<h2 class="uk-heading-line uk-text-center"><span>Signup</span></h2>
+<form class="signup-form" method="post" action="/signup">
+  <div class="uk-container signup-form signup-carousel" uk-slideshow>
+    <!-- <ul class="uk-slideshow-items" uk-height-viewport="expand: true"> -->
+    <ul class="uk-slideshow-items" uk-height-viewport="min-height: 10">
+      <li>
+        <h3>Choose your gender</h3>
+        
+        <div class="uk-column-1-2">
+          <div class="signup-svg">
+            <img src="assets/signup/man.svg" alt="man" id="signup-gender-man">
+          </div>
+          <div class="signup-svg">
+            <img src="assets/signup/woman.svg" alt="woman" id="signup-gender-woman">
+          </div>
+        </div>
+        
+        <div class="uk-margin">
+          <button class="uk-button uk-button-default signup-gender signup-next-gender hidden" uk-slidenav-next uk-slideshow-item="next"><span id="signup-chosen-gender"></span>Next</button>
+        </div>
+      </li>
+
+      <li>
+        <h3>What's your name?</h3>
+        <div class="uk-margin">
+          <div class="uk-inline uk-form-controls">
+            <input class="uk-input" id="signup-first-name" type="text" placeholder="First Name" name="firstName">
+          </div>
+        </div>
+
+        <div class="uk-margin">
+          <div class="uk-inline uk-form-controls">
+            <input class="uk-input" id="signup-last-name" type="text" placeholder="Last Name" name="lastName">
+          </div>
+        </div>
+        
+        <div class="uk-margin">
+          <button class="uk-button uk-button-default" uk-slidenav-previous uk-slideshow-item="previous">Previous</button>
+          <button class="uk-button uk-button-default signup-next-name hidden" uk-slidenav-next uk-slideshow-item="next">Next</button>
+        </div>
+      </li>
+
+      <li>
+        <h3>Make your account secure.</h3>
+        <div class="uk-margin">
+          <div class="uk-inline uk-form-controls">
+            <span class="uk-form-icon" uk-icon="icon: mail"></span>
+            <input class="uk-input" id="signup-email" type="text" placeholder="Email" name="email">
+          </div>
+        </div>
+
+        <div class="uk-margin">
+          <div class="uk-inline uk-form-controls">
+            <span class="uk-form-icon" uk-icon="icon: lock"></span>
+            <input class="uk-input" id="signup-password" type="password" placeholder="Password" name="password">
+          </div>
+        </div>
+
+        <div class="uk-margin">
+          <div class="uk-inline uk-form-controls">
+            <span class="uk-form-icon" uk-icon="icon: lock"></span>
+            <input class="uk-input" id="signup-confirm-password" type="password" placeholder="Confirm Password" name="cPassword">
+          </div>
+        </div>
+        
+        <div class="uk-margin">
+          <button class="uk-button uk-button-default" uk-slidenav-previous uk-slideshow-item="previous">Previous</button>
+          <button class="uk-button uk-button-default signup-next-security hidden" uk-slidenav-next uk-slideshow-item="next">Next</button>
+        </div>
+      </li>
+      <li>
+        <h3>Where are you from?</h3>
+        
+        <div class="uk-margin">
+          <div class="uk-inline uk-form-controls">
+            <span class="uk-form-icon" uk-icon="icon: location"></span>
+            <input class="uk-input" id="signup-location" type="text" placeholder="City" name="location">
+          </div>
+        </div>
+
+        <div class="uk-margin">
+          <button class="uk-button uk-button-default" uk-slidenav-previous uk-slideshow-item="previous">Previous</button>
+          <button class="uk-button uk-button-default signup-next-location hidden" uk-slidenav-next uk-slideshow-item="next">Next</button>
+        </div>
+      </li>
+      <li>
+        <h3>How do you intend to use our site?</h3>
+        
+        <div class="uk-margin signup-svg">
+          <img src="assets/signup/family.svg" alt="User" id="signup-type-user" title="I want to improve my health and get doctor assistance ASAP" uk-tooltip="pos: bottom">
+        </div>
+        <div class="uk-column-1-2">
+          <div class="uk-margin signup-svg">
+            <img src="assets/signup/pharmacy.svg" alt="Doctor" id="signup-type-doctor" title="I want to treat ill patients" uk-tooltip="pos: top">
+          </div>
+          <div class="uk-margin signup-svg">
+            <img src="assets/signup/first-aid-kit.svg" alt="Professional" id="signup-type-professional" title="I want to provide my services to people's doorstep" uk-tooltip="pos: top">
+          </div>
+        </div>
+        <div class="uk-margin">
+          <button class="uk-button uk-button-default" uk-slidenav-previous uk-slideshow-item="previous">Previous</button>
+          <button class="uk-button uk-button-default signup-submit hidden"><span id="signup-chosen-type"></span>Next</button>
+        </div>
+      </li>
+    </ul>
+  </div>
+</form>
