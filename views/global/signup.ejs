@@ -1,6 +1,6 @@
 <%- layout('layout') -%>
 <h2 class="uk-heading-line uk-text-center"><span>Signup</span></h2>
-<form method="post" action="/signup">
+<form class="signup-form" method="post" action="/signup">
   <div class="uk-container signup-form signup-carousel" uk-slideshow>
     <!-- <ul class="uk-slideshow-items" uk-height-viewport="expand: true"> -->
     <ul class="uk-slideshow-items" uk-height-viewport="min-height: 10">
@@ -25,13 +25,13 @@
         <h3>What's your name?</h3>
         <div class="uk-margin">
           <div class="uk-inline uk-form-controls">
-            <input class="uk-input" id="signup-first-name" type="text" placeholder="First Name">
+            <input class="uk-input" id="signup-first-name" type="text" placeholder="First Name" name="firstName">
           </div>
         </div>
 
         <div class="uk-margin">
           <div class="uk-inline uk-form-controls">
-            <input class="uk-input" id="signup-last-name" type="text" placeholder="Last Name">
+            <input class="uk-input" id="signup-last-name" type="text" placeholder="Last Name" name="lastName">
           </div>
         </div>
         
@@ -46,21 +46,21 @@
         <div class="uk-margin">
           <div class="uk-inline uk-form-controls">
             <span class="uk-form-icon" uk-icon="icon: mail"></span>
-            <input class="uk-input" id="signup-email" type="text" placeholder="Email">
+            <input class="uk-input" id="signup-email" type="text" placeholder="Email" name="email">
           </div>
         </div>
 
         <div class="uk-margin">
           <div class="uk-inline uk-form-controls">
             <span class="uk-form-icon" uk-icon="icon: lock"></span>
-            <input class="uk-input" id="signup-password" type="password" placeholder="Password">
+            <input class="uk-input" id="signup-password" type="password" placeholder="Password" name="password">
           </div>
         </div>
 
         <div class="uk-margin">
           <div class="uk-inline uk-form-controls">
             <span class="uk-form-icon" uk-icon="icon: lock"></span>
-            <input class="uk-input" id="signup-confirm-password" type="password" placeholder="Confirm Password">
+            <input class="uk-input" id="signup-confirm-password" type="password" placeholder="Confirm Password" name="cPassword">
           </div>
         </div>
         
@@ -75,13 +75,13 @@
         <div class="uk-margin">
           <div class="uk-inline uk-form-controls">
             <span class="uk-form-icon" uk-icon="icon: location"></span>
-            <input class="uk-input" id="password" type="text" placeholder="City">
+            <input class="uk-input" id="signup-location" type="text" placeholder="City" name="location">
           </div>
         </div>
 
         <div class="uk-margin">
           <button class="uk-button uk-button-default" uk-slidenav-previous uk-slideshow-item="previous">Previous</button>
-          <button class="uk-button uk-button-default" uk-slidenav-next uk-slideshow-item="next">Next</button>
+          <button class="uk-button uk-button-default signup-next-location hidden" uk-slidenav-next uk-slideshow-item="next">Next</button>
         </div>
       </li>
       <li>
@@ -100,7 +100,7 @@
         </div>
         <div class="uk-margin">
           <button class="uk-button uk-button-default" uk-slidenav-previous uk-slideshow-item="previous">Previous</button>
-          <button class="uk-button uk-button-default" uk-slidenav-next uk-slideshow-item="next"><span id="signup-chosen-type"></span>Next</button>
+          <button class="uk-button uk-button-default signup-submit hidden"><span id="signup-chosen-type"></span>Next</button>
         </div>
       </li>
     </ul>
