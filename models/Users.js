@@ -1,7 +1,8 @@
 let mongoose = require('mongoose');
 let Schema = mongoose.Schema;
 
-let User = new Schema({
+let userSchema = new Schema({
+	googleID: String,
 	email: { type: String, unique: true },
 	password: String,
 	firstName: String,
@@ -11,4 +12,4 @@ let User = new Schema({
 	address: String
 });
 
-module.exports = mongoose.model('User', User);
+module.exports = mongoose.model('User', userSchema);
