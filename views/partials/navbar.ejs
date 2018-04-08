@@ -1,115 +1,122 @@
 <div uk-sticky="sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky; bottom: #transparent-sticky-navbar">
-<nav class="uk-navbar-container uk-navbar" uk-navbar>
+    <nav class="uk-navbar-container uk-navbar" uk-navbar>
 
-  <div class="uk-navbar-left">
-    <a class="uk-navbar-item uk-logo" href="/">Health Plus</a>
-  </div>
+        <div class="uk-navbar-left">
+            <a class="uk-navbar-item uk-logo" href="/">Health Plus</a>
+        </div>
 
-  <div class="uk-navbar-right uk-hidden@l">
-    <a href="#offcanvas-menu" uk-icon="icon: menu" class="hamburger" uk-toggle></a>
-    <div id="offcanvas-menu" uk-offcanvas>
-      <div class="uk-offcanvas-bar uk-flex uk-flex-column">
-        <ul class="uk-nav uk-nav-primary uk-nav-center uk-margin-auto-vertical">
-          <li class="uk-nav-header">
-            <a href="/login">Login | Signup</a>
-          </li>
-          <li class="uk-divider-icon"></li>
-          <li class="uk-parent uk-nav-header">
-              <a href="#">Products</a>
-              <ul class="uk-nav-sub">
-                  <li><a href="/medicines">Medicines</a></li>
-                  <li><a href="/dietsNsupplements">Diets & Supplements</a></li>
-                  <li><a href="/bodycare">Bodycare</a></li>
-                  <li><a href="/healthNfitness">Health & Fitness</a></li>
-              </ul>
-          </li>
-          <li class="uk-divider-icon"></li>
-          <li class="uk-parent uk-nav-header">
-              <a href="#">Services</a>
-              <ul class="uk-nav-sub">
-                  <li><a href="/yogatrainer">Yoga Trainer</a></li>
-                  <li><a href="/personaltrainer">Personal Trainer</a></li>
-                  <li><a href="homemasseur">Home Masseur</a></li>
-                  <li><a href="/hometesting">Home Testing</a></li>    
+        <div class="uk-navbar-right uk-hidden@l">
+            <a href="#offcanvas-menu" uk-icon="icon: menu" class="hamburger" uk-toggle></a>
+            <div id="offcanvas-menu" uk-offcanvas>
+                <div class="uk-offcanvas-bar uk-flex uk-flex-column">
+                    <ul class="uk-nav uk-nav-primary uk-nav-center uk-margin-auto-vertical">
+                        <li class="uk-nav-header">
+                            <a href="/login">Login | Signup</a>
+                        </li>
+                        <li class="uk-divider-icon"></li>
+                        <li class="uk-parent uk-nav-header">
+                            <a href="#">Products</a>
+                            <ul class="uk-nav-sub">
+                                <li><a href="/medicines">Medicines</a></li>
+                                <li><a href="/dietsNsupplements">Diets & Supplements</a></li>
+                                <li><a href="/bodycare">Bodycare</a></li>
+                                <li><a href="/healthNfitness">Health & Fitness</a></li>
+                            </ul>
+                        </li>
+                        <li class="uk-divider-icon"></li>
+                        <li class="uk-parent uk-nav-header">
+                            <a href="#">Services</a>
+                            <ul class="uk-nav-sub">
+                                <li><a href="/yogatrainer">Yoga Trainer</a></li>
+                                <li><a href="/personaltrainer">Personal Trainer</a></li>
+                                <li><a href="homemasseur">Home Masseur</a></li>
+                                <li><a href="/hometesting">Home Testing</a></li>
+                            </ul>
+                        </li>
+                        <li class="uk-divider-icon"></li>
+                        <li class="uk-nav-header">
+                            <a href="/ambulance">Ambulance</a>
+                        </li>
+
+                        <li class="uk-nav-header">
+                            <a href="/nearbyhospitals">Nearby Hospitals</a>
+                        </li>
+
+                        <li class="uk-nav-header">
+                            <a href="/blog">Blog</a>
+                        </li>
+
+                        <li class="uk-nav-header">
+                            <a href="/testimonials">Testimonials</a>
+                        </li>
+
+                        <li class="uk-nav-header">
+                            <a href="/contactus">Contact Us</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="uk-navbar-right uk-visible@l">
+            <ul class="uk-navbar-nav">
+                <li>
+                    <a class="uk-button uk-button-text" href="#">Products</a>
+                    <div class="uk-navbar-dropdown">
+                        <ul class="uk-nav uk-navbar-dropdown-nav">
+                            <li><a href="/medicines">Medicines</a></li>
+                            <li><a href="/dietsNsupplements">Diets & Supplements</a></li>
+                            <li><a href="/bodycare">Bodycare</a></li>
+                            <li><a href="/healthNfitness">Health & Fitness</a></li>
+                        </ul>
+                    </div>
+                </li>
+
+                <li>
+                    <a class="uk-button uk-button-text" href="#">Services</a>
+                    <div class="uk-navbar-dropdown">
+                        <ul class="uk-nav uk-navbar-dropdown-nav">
+                            <li><a href="/yogatrainer">Yoga Trainer</a></li>
+                            <li><a href="/personaltrainer">Personal Trainer</a></li>
+                            <li><a href="homemasseur">Home Masseur</a></li>
+                            <li><a href="/hometesting">Home Testing</a></li>
+                        </ul>
+                    </div>
+                </li>
+
+                <li>
+                    <a class="uk-button uk-button-text" href="/ambulance">Ambulance</a>
+                </li>
+
+                <li>
+                    <a class="uk-button uk-button-text" href="/nearbyhospitals">Nearby Hospitals</a>
+                </li>
+
+                <li>
+                    <a class="uk-button uk-button-text" href="/blog">Blog</a>
+                </li>
+
+                <li>
+                    <a class="uk-button uk-button-text" href="/testimonials">Testimonials</a>
+                </li>
+
+                <li>
+                    <a class="uk-button uk-button-text" href="contactus">Contact Us</a>
+                </li>
+
+                <% if(!user) { %>
+                    <li class="navbar-login-button">
+                        <a href="/login"><button class="uk-button uk-button-default">Login | Signup</button></a>
+                    </li>
+                    <% } else { %>
+                        <li>
+                            <a href="/profile">
+                                <%= user.id %>
+                            </a>
+                        </li>
+                        <% } %>
             </ul>
-          </li>
-          <li class="uk-divider-icon"></li>
-          <li class="uk-nav-header">
-            <a href="/ambulance">Ambulance</a>
-          </li>
-           
-          <li class="uk-nav-header">
-            <a href="/nearbyhospitals">Nearby Hospitals</a>
-          </li>
-           
-          <li class="uk-nav-header">
-            <a href="/blog">Blog</a>
-          </li>
-           
-          <li class="uk-nav-header">
-            <a href="/testimonials">Testimonials</a>
-          </li>
-           
-          <li class="uk-nav-header">
-            <a href="/contactus">Contact Us</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </div>
-
-  <div class="uk-navbar-right uk-visible@l">    
-    <ul class="uk-navbar-nav">
-      <li>
-        <a class="uk-button uk-button-text" href="#">Products</a>
-        <div class="uk-navbar-dropdown">
-          <ul class="uk-nav uk-navbar-dropdown-nav">
-            <li><a href="/medicines">Medicines</a></li>
-            <li><a href="/dietsNsupplements">Diets & Supplements</a></li>
-            <li><a href="/bodycare">Bodycare</a></li>
-            <li><a href="/healthNfitness">Health & Fitness</a></li>
-          </ul>
         </div>
-      </li>
 
-      <li>
-        <a class="uk-button uk-button-text" href="#">Services</a>
-        <div class="uk-navbar-dropdown">
-          <ul class="uk-nav uk-navbar-dropdown-nav">
-            <li><a href="/yogatrainer">Yoga Trainer</a></li>
-            <li><a href="/personaltrainer">Personal Trainer</a></li>
-            <li><a href="homemasseur">Home Masseur</a></li>
-            <li><a href="/hometesting">Home Testing</a></li>
-          </ul>
-        </div>
-      </li>
-
-      <li>
-        <a class="uk-button uk-button-text" href="/ambulance">Ambulance</a>
-      </li>
-
-      <li>
-        <a class="uk-button uk-button-text" href="/nearbyhospitals">Nearby Hospitals</a>
-      </li>
-
-      <li>
-        <a class="uk-button uk-button-text" href="/blog">Blog</a>
-      </li>
-
-      <li>
-        <a class="uk-button uk-button-text" href="/testimonials">Testimonials</a>
-      </li>
-
-      <li>
-        <a class="uk-button uk-button-text" href="contactus">Contact Us</a>
-      </li>
-
-      <li class="navbar-login-button">
-        <a href="/login"><button class="uk-button uk-button-default">Login | Signup</button></a>
-      </li>
-     
-    </ul>
-  </div>
-    
-</nav>
+    </nav>
 </div>
