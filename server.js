@@ -46,16 +46,16 @@ passport.use(
 				done(null,existingUser);
 			}
 			else{
-				let user = new User();
-				user.googleID = profile.id;
-				user.save().then(user=>{
+				new User({googleID: profile.id}).save().then((user)=>{
 					done(null,user);
 				});
-				console.log('profile id saved : ',user.googleID);
+				console.log('profile id saved : ',profile.id);
 			}
-		})
+		});
+		
 	})
 );
+
 passport.serializeUser((user,done)=>{
 	done(null,user.id);
 });
