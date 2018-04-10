@@ -9,7 +9,11 @@ let userSchema = new Schema({
 	lastName: String,
 	gender: String,
 	location: String,
-	address: String
+	address: String,
+	history: [{
+		date: Date,
+		paid: {type: Number, default: 0},
+	}]
 });
 
 module.exports = mongoose.model('User', userSchema);
