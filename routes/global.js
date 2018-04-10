@@ -45,9 +45,10 @@ app.get('/dietsNsupplements', (req, res) => {
 
 	});
 });
-app.post('/dietsNsupplements',(req,res)=>{
+app.get('/dietsNsupplements/:id',(req,res)=>{
+	console.log("my product",req.params.id);
 	let product=new Product();
-	Product.findOne({_id : req.body.product_id}).exec(function(err,product){
+	Product.findOne({_id : req.params.id}).exec(function(err,product){
 	if(err){
 			console.log(err);
 		}
@@ -59,9 +60,6 @@ app.post('/dietsNsupplements',(req,res)=>{
     		});		
 		}		
 	});
-});
-app.get('/productpage',(req,res)=>{
-	res.json(req.body);
 });
 app.get('/bodycare', (req, res) => {
 	let products=new Product();
