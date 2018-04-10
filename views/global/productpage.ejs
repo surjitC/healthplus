@@ -1,4 +1,6 @@
 <%- layout('layout') -%>
+
+<h2>product page</h2>
 <div class="uk-container">
 <div class="uk-child-width-1-4@m" uk-grid>
     	<div>
@@ -8,11 +10,7 @@
 	            </div>
 	            <div class="uk-card-body">
                 	<h3 class="uk-card-title"><%= product.name %></h3>
-                        <form method="get">
-                        <input type="hidden" name="product_id" value="<%= product._id %>"></input>
-                        <input type="hidden" name="product_price" value="<%= product.price %>"></input>
                         <button class="uk-button uk-button-danger">Rs <%= product.price %></button>
-                    </form>
             	</div>
         	</div>
     	</div>
