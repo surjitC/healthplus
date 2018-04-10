@@ -18,6 +18,8 @@ const mongoose = require('mongoose');
 //---------FILES-----------
 require('./models/Users');
 const User = mongoose.model('User');
+const Product = require('./models/Products');
+const Service = require('./models/Services');
 const globalRoutes = require('./routes/global');
 const privateRoutes = require('./routes/private');
 const config = require('./config');
@@ -45,13 +47,16 @@ passport.use(
                 googleID: profile.id
             }).then((existingUser) => {
                 if (existingUser) {
-                    console.log('Already have the user');
+                    console.log('Already have the user',profile);
                     done(null, existingUser);
                 } else {
                     let user = new User();
                     user.googleID = profile.id;
+                    user.email = profile.emails[0].value;
+                    user.firstName = profile.name.givenName;
+                    user.lastName = profile.name.familyName;
                     user.save().then(user => {
-                        console.log('profile id saved : ', user.googleID);
+                        console.log('profile id saved : ', profile.familyName);
                         done(null, user);
                     }).catch((err) => {
                         console.error(err);
@@ -73,6 +78,8 @@ passport.deserializeUser((id, done) => {
         done(null, user);
     });
 });
+
+
 
 //-----------MIDDLEWARE------------
 app.use(morgan('dev'));
@@ -97,12 +104,6 @@ app.use((req, res, callback) => {
 });
 app.engine('ejs', ejsMate);
 app.set('view engine', 'ejs');
-// app.use(
-// 	cookieSession({
-// 		maxAge: 30 * 24 *60 * 60 * 1000,
-// 		keys: [config.cookieKey]
-// 	})
-// );
 
 //---------ROUTES-----------
 app.use(globalRoutes);
