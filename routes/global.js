@@ -4,34 +4,161 @@ const mongoose = require('mongoose');
 const passport = require('passport');
 const googleStrategy = require('passport-google-oauth20').Strategy;
 
-//const User = mongoose.model('User');
+// const Product = mongoose.model('Products');
+const Product = require('../models/Products');
+const Service = require('../models/Services');
+
 
 app.get('/', (req, res) => {
     res.render("global/landing");
 });
+
 app.get('/medicines', (req, res) => {
-    res.render('global/medicines');
+    let products=new Product();
+	 Product.find({category : "medicines"}).exec(function(err,products){
+		if(err){
+			console.log(err);
+		}
+		else{
+			res.render('global/medicines',{
+
+    			products: products
+				
+    		});		
+		}
+
+	});
 });
 app.get('/dietsNsupplements', (req, res) => {
-    res.render('global/dietsNsupplements');
+    let products=new Product();
+	 Product.find({category : "dietsNsupplements"}).exec(function(err,products){
+		if(err){
+			console.log(err);
+		}
+		else{
+			res.render('global/dietsNsupplements',{
+
+    			products: products
+				
+    		});		
+		}
+
+	});
+});
+app.post('/dietsNsupplements',(req,res)=>{
+	let product=new Product();
+	Product.findOne({_id : req.body.product_id}).exec(function(err,product){
+	if(err){
+			console.log(err);
+		}
+		else{
+			res.render('global/productpage',{
+
+    			product: product
+				
+    		});		
+		}		
+	});
+});
+app.get('/productpage',(req,res)=>{
+	res.json(req.body);
 });
 app.get('/bodycare', (req, res) => {
-    res.render('global/bodycare');
+	let products=new Product();
+	 Product.find({category : "bodycare"}).exec(function(err,products){
+		if(err){
+			console.log(err);
+		}
+		else{
+			res.render('global/bodycare',{
+
+    			products: products
+				
+    		});		
+		}
+
+	});
+    console.log(products);
 });
 app.get('/healthNfitness', (req, res) => {
-    res.render('global/healthNfitness');
+    let products=new Product();
+	 Product.find({category : "healthNfitness"}).exec(function(err,products){
+		if(err){
+			console.log(err);
+		}
+		else{
+			res.render('global/healthNfitness',{
+
+    			products: products
+				
+    		});		
+		}
+
+	});
 });
 app.get('/yogatrainer', (req, res) => {
-    res.render('global/yogatrainer');
+    let services=new Service();
+	 Service.find({category : "yogatrainer"}).exec(function(err,services){
+		if(err){
+			console.log(err);
+		}
+		else{
+			res.render('global/yogatrainer',{
+
+    			services: services
+				
+    		});		
+		}
+
+	});
 });
 app.get('/personaltrainer', (req, res) => {
-    res.render('global/personaltrainer');
+    let services=new Service();
+	 Service.find({category : "personaltrainer"}).exec(function(err,services){
+		if(err){
+			console.log(err);
+		}
+		else{
+			res.render('global/personaltrainer',{
+
+    			services: services
+				
+    		});		
+		}
+
+	});
 });
 app.get('/homemasseur', (req, res) => {
-    res.render('global/homemasseur');
+   let services=new Service();
+	 Service.find({category : "homemasseur"}).exec(function(err,services){
+		if(err){
+			console.log(err);
+		}
+		else{
+			res.render('global/homemasseur',{
+
+    			services: services
+				
+    		});		
+		}
+
+	}); 
 });
 app.get('/hometesting', (req, res) => {
-    res.render('global/hometesting');
+    let services=new Service();
+	 Service.find({category : "hometesting"}).exec(function(err,services){
+		if(err){
+			console.log(err);
+		}
+		else{
+			res.render('global/hometesting',{
+
+    			services: services
+				
+    		});		
+		}
+
+	});
 });
 app.get('/ambulance', (req, res) => {
     res.render('global/ambulance');
