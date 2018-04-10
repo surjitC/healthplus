@@ -1,2 +1,19 @@
 <%- layout('layout') -%>
 <h2>Body Care</h2>
+<div class="uk-container">
+<div class="uk-child-width-1-4@m" uk-grid>
+    	<% for (var i = 0; i < products.length; i++) { %>	
+    	<div>
+        	<div class="uk-card uk-card-default uk-card-hover">
+	            <div class="uk-card-media-top">
+	                <img src=<%= products[i].image %> ">
+	            </div>
+	            <div class="uk-card-body">
+                	<h3 class="uk-card-title"><%= products[i].name %></h3>
+                	<button class="uk-button uk-button-danger">Rs <%= products[i].price %></button>
+            	</div>
+        	</div>
+    	</div>
+    	<% } %>
+    </div>
+</div>    
