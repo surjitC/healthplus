@@ -109,10 +109,8 @@
                         <a href="/login"><button class="uk-button uk-button-default">Login | Signup</button></a>
                     </li>
                     <% } else { %>
-                        <li>
-                            <a href="/profile">
-                                <%= user.id %>
-                            </a>
+                        <li class="navbar-login-button">
+                        <a href="/profile"><button class="uk-button uk-button-default"><%= user.firstName %></button></a>
                         </li>
                         <% } %>
             </ul>
