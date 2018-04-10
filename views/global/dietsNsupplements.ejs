@@ -3,7 +3,8 @@
  <div class="uk-container">
  	<div class="uk-child-width-1-4@m" uk-grid>
     	 <% for (var i = 0; i < products.length; i++) { %>	 
-    	<div>
+    	<a href="/dietsNsupplements/<%= products[i]._id %>">
+        <div>
         	<div class="uk-card uk-card-default uk-card-hover">
 	            <div class="uk-card-media-top">
 	                <img src=<%= products[i].image %> ">
@@ -18,6 +19,7 @@
             	</div>
         	</div>
     	</div>
+        </a>
     	<% } %>
     </div>
 </div> 
