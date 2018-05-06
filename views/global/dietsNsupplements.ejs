@@ -11,11 +11,7 @@
 	            </div>
 	            <div class="uk-card-body">
                 	<h3 class="uk-card-title"><%= products[i].name %></h3>
-                    <form method="post">
-                    <input type="hidden" name="product_id" value="<%= products[i]._id %>"></input>
-                	<input type="hidden" name="product_price" value="<%= products[i].price %>"></input>
                     <button class="uk-button uk-button-danger">Rs <%= products[i].price %></button>
-                    </form>
             	</div>
         	</div>
     	</div>
