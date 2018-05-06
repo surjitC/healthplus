@@ -1,0 +1,22 @@
+<%- layout('layout') -%>
+<h2>Cart</h2>
+<div class="uk-container">
+<% for(let i = 0; i < userCart.length; i ++) { %>
+    <div class="uk-card uk-card-default uk-grid-collapse uk-child-width-1-2@s uk-margin text-center" uk-grid>
+        <div class="uk-card-media-left uk-cover-container">
+            <img src=<%= userCart[i].item.image %> alt=<%= userCart[i].item.name %> >
+        </div>
+        <div>
+            <div class="uk-card-body">
+                <h1 class=""><%= userCart[i].item.name %></h1>
+                <span class="uk-label"><%= userCart[i].item.category %></span>
+                <h2><i class="fa fa-rupee-sign"></i><%= userCart[i].item.price %></h2>
+            </div>
+        </div>
+    </div>
+<% } %>
+
+<div class="text-center">
+    <button class="uk-button uk-button-secondary uk-button-large"><i class="fa fa-credit-card button-icon"></i> Proceed to Checkout<br/><i class="fa fa-rupee-sign"></i> <%= total %></button>
+</div>
+</div>
