@@ -4,10 +4,7 @@ let Schema = mongoose.Schema;
 let productSchema = new Schema({
     name: String,
     price: String,
-    category: {
-        type: Schema.ObjectId,
-        ref: 'Categories'
-    },
+    category: String,
     image: String,
 });
 
