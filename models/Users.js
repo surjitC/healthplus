@@ -23,7 +23,13 @@ let userSchema = new Schema({
             type: Schema.Types.ObjectId,
             ref: 'Products'
         }
-    }]
+	}],
+	"cart": [{
+		"item": {
+			"type": Schema.Types.ObjectId,
+			"ref": "Products"
+		}
+	}]
 });
 
 module.exports = mongoose.model('User', userSchema);
