@@ -14,10 +14,11 @@ const flash = require('express-flash');
 const passport = require('passport');
 const googleStrategy = require('passport-google-oauth20').Strategy;
 const mongoose = require('mongoose');
+const path = require('path')
 
 //---------FILES-----------
-require('./models/Users');
-const User = mongoose.model('User');
+const User = require('./models/Users');
+// const User = mongoose.model('User');
 const Product = require('./models/Products');
 const Service = require('./models/Services');
 const globalRoutes = require('./routes/global');
@@ -83,8 +84,9 @@ passport.deserializeUser((id, done) => {
 
 //-----------MIDDLEWARE------------
 app.use(morgan('dev'));
-app.use('/', express.static('public'));
-app.use('/login', express.static('public'));
+// app.use('/', express.static('public'));
+// app.use('/login', express.static('public'));
+app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
     extended: true
