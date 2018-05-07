@@ -177,7 +177,10 @@ app.get('/about', (req, res) => {
     res.render('global/about');
 });
 app.get('/login', (req, res) => {
-    res.render('global/login');
+	if (req.user) {
+		return res.status(200).redirect('/profile');
+	}
+	return res.render('global/login');
 });
 app.get('/signup', (req, res) => {
     res.render('global/signup');
