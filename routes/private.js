@@ -5,6 +5,7 @@ const passport = require('passport');
 const googleStrategy = require('passport-google-oauth20').Strategy;
 
 const User = mongoose.model('User');
+const Product = mongoose.model('Products');
 
 app.get("/welcome", (request, response) => {
     console.log(request.user);
@@ -26,23 +27,60 @@ app.post('/cart', (request, response) => {
     }).then((user) => {
         if (user) {
             let userCart = user.cart;
-            console.log("USERCART BEFROR PUSH");
-            console.log(userCart);
             let productId = request.body["product-id"];
-            userCart.push({
-                "item": productId
-            });
-            console.log("USERCART AFTER PUHS");
-            console.log(userCart);
-            user.cart = userCart;
-            return user.save();
+            let itemToBeDeleted = request.body["delete-item"];
+            
+            if (productId) {
+                let foundInCart = false;
+                for (let i = 0; i < userCart.length; i ++) {
+                    if (userCart[i].item == productId) {
+                        foundInCart = true;
+                        console.log("FOUND IN CART");
+                        console.log(userCart[i]);
+                        userCart[i].quantity += 1;
+                        userCart[i].price += Number(userCart[i].price);
+                    }
+                }
+                
+                if (!foundInCart) {
+                    Product.findOne({
+                        _id: productId
+                    }).then((foundProduct) => {
+                        console.log("NOT FOUND IN CART");
+                        console.log(foundProduct);
+                        userCart.push({
+                            "item": productId,
+                            "quantity": 1,
+                            "price": Number(foundProduct.price)
+                        });
+                        user.cart = userCart;
+                        return user.save();
+                    }).catch((err) => {
+                        console.log(err);
+                        throw err;
+                    });
+                } else {
+                    user.cart = userCart;
+                    return user.save();    
+                }
+            } else if (itemToBeDeleted) {
+                console.log("ITEM TO BE DELETED");
+                console.log(itemToBeDeleted);
+                for(let i = 0; i < userCart.length; i ++) {
+                    console.log("ITEM BEING CHECKED");
+                    console.log(userCart[i].item);
+        
+                    if (userCart[i].item == itemToBeDeleted) {
+                        userCart.splice(i, 1);
+                    }
+                }
+                user.cart = userCart;
+                return user.save();
+            }
         } else {
             throw new Error("invalid user");
         }
     }).then((savedUser) => {
-        console.log("USER SAVED");
-        console.log(savedUser);
-        console.log(savedUser.cart);
         return response.status(200).redirect('cart');
     }).catch((err) => {
         console.log(err);
@@ -66,7 +104,9 @@ app.get('/cart', (request, response) => {
             let userCart = userWithCart.cart;
             let total = 0;
             for (let i = 0; i < userCart.length; i ++) {
-                total += Number(userCart[i].item.price);
+                console.log("PRICE OF ITEM");
+                console.log(userCart[i].price);
+                total += Number(userCart[i].price);
             }
             
             if (isNaN(total)) {
