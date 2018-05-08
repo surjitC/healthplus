@@ -31,6 +31,7 @@ const config = require('./config');
 mongoose.connect(config.dbUrl, (err) => {
     if (err) {
         console.log('Unable to connect');
+        console.log(err);
     } else {
         console.log('connected to db');
     }
