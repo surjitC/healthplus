@@ -1,18 +1,17 @@
 <%- layout('layout') -%>
-<h2><%= user.firstName %></h2>
-<h2>product page</h2>
-<div class="uk-container">
-<div class="uk-child-width-1-4@m" uk-grid>
-    	<div>
-        	<div class="uk-card uk-card-default uk-card-hover">
-	            <div class="uk-card-media-top">
-	                <img src=<%= product.image %> ">
-	            </div>
-	            <div class="uk-card-body">
-                	<h3 class="uk-card-title"><%= product.name %></h3>
-                        <button class="uk-button uk-button-danger">Rs <%= product.price %></button>
-            	</div>
-        	</div>
-    	</div>
-    </div>
+<div class="uk-container text-center">
+	<div class="uk-grid">
+		<div class="uk-width-1-3@m">
+			<img class="product-image" src=<%= product.image %> alt=<%= product.name %>>
+		</div>
+		<div class="uk-width-2-3@m text-center product-info">
+			<p class="uk-heading-primary"><%= product.name %></p>
+			<span class="uk-label"><%= product.category %></span>
+			<h3><i class="fa fa-rupee-sign"></i> <%= product.price %></h3>
+				<form method="post" action="/cart">
+					<input type="hidden" name="product-id" value=<%= product._id %> />
+					<button class="uk-button uk-button-secondary product-add-to-cart" type="submit"><i class="fa fa-shopping-cart button-icon"></i> Add to Cart</button>
+				</form>
+		</div>
+	</div>
 </div>
