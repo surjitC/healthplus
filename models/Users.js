@@ -22,7 +22,8 @@ let userSchema = new Schema({
         item: {
             type: Schema.Types.ObjectId,
             ref: 'Products'
-        }
+        },
+        quantity: Number
 	}],
 	"cart": [{
 		"item": {
