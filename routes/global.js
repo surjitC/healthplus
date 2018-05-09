@@ -344,5 +344,7 @@ app.get('/auth/google/callback',
         failureRedirect: '/sorry'
     })
 );
-
+app.get('/editprofile', (req, res) => {
+    res.render('private/editprofile');
+});
 module.exports = app;
