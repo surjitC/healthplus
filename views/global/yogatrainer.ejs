@@ -3,6 +3,7 @@
 <div class="uk-container">
 	<div class="uk-child-width-1-4@m" uk-grid>
     	<% for (var i = 0; i < services.length; i++) { %>	
+        <a href="/yogatrainer/<%= services[i]._id %>">
     	<div>
         	<div class="uk-card uk-card-default uk-card-hover">
 	            <div class="uk-card-media-top">
@@ -14,6 +15,7 @@
             	</div>
         	</div>
     	</div>
+        </a>
     	<% } %>
     </div>
 </div> 

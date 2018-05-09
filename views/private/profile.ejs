@@ -17,8 +17,49 @@
             <td>email :</td>
             <td><%= user.email %></td>
         </tr>
+        <tr>
+            <td>Contact No</td>
+            <td>
+                <% if (user.contact) { %>
+                          <%= user.contact %>
+                        <% } else { %>
+                            Add new Contact
+                        <% } %>
+            </td>
+        </tr>
+        <tr>
+            <td>Address</td>
+            <td>
+                <% if (user.address) { %>
+                          <%= user.address %>
+                        <% } else { %>
+                            Add new Address
+                        <% } %>
+            </td>
+        </tr>
+        <tr>
+            <td>Pincode</td>
+            <td>
+                <% if (user.pincode) { %>
+                          <%= user.pincode %>
+                        <% } else { %>
+                            Add new Pincode
+                        <% } %>
+            </td>
+        </tr>
+        <tr>
+            <td>Gender</td>
+            <td>
+                <% if (user.gender) { %>
+                          <%= user.gender %>
+                        <% } else { %>
+                            Add new gender
+                        <% } %>
+            </td>
+        </tr>
     </tbody>
 </table>
     </div>
 </div>
 </div>
+<a href="/editprofile"><button class="uk-button uk-button-secondary">edit profile</button></a>

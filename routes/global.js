@@ -29,6 +29,22 @@ app.get('/medicines', (req, res) => {
 
 	});
 });
+app.get('/medicines/:id',(req,res)=>{
+	console.log("my product",req.params.id);
+	let product=new Product();
+	Product.findOne({_id : req.params.id}).exec(function(err,product){
+	if(err){
+			console.log(err);
+		}
+		else{
+			res.render('global/productpage',{
+
+    			product: product
+				
+    		});		
+		}		
+	});
+});
 app.get('/dietsNsupplements', (req, res) => {
     let products=new Product();
 	 Product.find({category : "dietsNsupplements"}).exec(function(err,products){
@@ -78,6 +94,22 @@ app.get('/bodycare', (req, res) => {
 	});
     console.log(products);
 });
+app.get('/bodycare/:id',(req,res)=>{
+	console.log("my product",req.params.id);
+	let product=new Product();
+	Product.findOne({_id : req.params.id}).exec(function(err,product){
+	if(err){
+			console.log(err);
+		}
+		else{
+			res.render('global/productpage',{
+
+    			product: product
+				
+    		});		
+		}		
+	});
+});
 app.get('/healthNfitness', (req, res) => {
     let products=new Product();
 	 Product.find({category : "healthNfitness"}).exec(function(err,products){
@@ -92,6 +124,22 @@ app.get('/healthNfitness', (req, res) => {
     		});		
 		}
 
+	});
+});
+app.get('/healthNfitness/:id',(req,res)=>{
+	console.log("my product",req.params.id);
+	let product=new Product();
+	Product.findOne({_id : req.params.id}).exec(function(err,product){
+	if(err){
+			console.log(err);
+		}
+		else{
+			res.render('global/productpage',{
+
+    			product: product
+				
+    		});		
+		}		
 	});
 });
 app.get('/yogatrainer', (req, res) => {
@@ -110,6 +158,22 @@ app.get('/yogatrainer', (req, res) => {
 
 	});
 });
+app.get('/yogatrainer/:id',(req,res)=>{
+	console.log("my service",req.params.id);
+	let service=new Service();
+	Service.findOne({_id : req.params.id}).exec(function(err,service){
+	if(err){
+			console.log(err);
+		}
+		else{
+			res.render('global/servicepage',{
+
+    			service: service
+				
+    		});		
+		}		
+	});
+});
 app.get('/personaltrainer', (req, res) => {
     let services=new Service();
 	 Service.find({category : "personaltrainer"}).exec(function(err,services){
@@ -124,6 +188,22 @@ app.get('/personaltrainer', (req, res) => {
     		});		
 		}
 
+	});
+});
+app.get('/personaltrainer/:id',(req,res)=>{
+	console.log("my service",req.params.id);
+	let service=new Service();
+	Service.findOne({_id : req.params.id}).exec(function(err,service){
+	if(err){
+			console.log(err);
+		}
+		else{
+			res.render('global/servicepage',{
+
+    			service: service
+				
+    		});		
+		}		
 	});
 });
 app.get('/homemasseur', (req, res) => {
@@ -142,6 +222,22 @@ app.get('/homemasseur', (req, res) => {
 
 	}); 
 });
+app.get('/homemasseur/:id',(req,res)=>{
+	console.log("my service",req.params.id);
+	let service=new Service();
+	Service.findOne({_id : req.params.id}).exec(function(err,service){
+	if(err){
+			console.log(err);
+		}
+		else{
+			res.render('global/servicepage',{
+
+    			service: service
+				
+    		});		
+		}		
+	});
+});
 app.get('/hometesting', (req, res) => {
     let services=new Service();
 	 Service.find({category : "hometesting"}).exec(function(err,services){
@@ -156,6 +252,22 @@ app.get('/hometesting', (req, res) => {
     		});		
 		}
 
+	});
+});
+app.get('/hometesting/:id',(req,res)=>{
+	console.log("my service",req.params.id);
+	let service=new Service();
+	Service.findOne({_id : req.params.id}).exec(function(err,service){
+	if(err){
+			console.log(err);
+		}
+		else{
+			res.render('global/servicepage',{
+
+    			service: service
+				
+    		});		
+		}		
 	});
 });
 app.get('/ambulance', (req, res) => {
@@ -232,5 +344,7 @@ app.get('/auth/google/callback',
         failureRedirect: '/sorry'
     })
 );
-
+app.get('/editprofile', (req, res) => {
+    res.render('private/editprofile');
+});
 module.exports = app;

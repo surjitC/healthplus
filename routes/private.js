@@ -15,7 +15,49 @@ app.get("/welcome", (request, response) => {
         response.status(403).render("global/sorry");
     }
 });
+app.post("/profile", (request, response) => {
+    if (!request.user) {
+        return response.status(403).redirect('login');
+    }
+    let userId = request.user._id;
+    User.findOne({_id: userId}).exec(function(err,founduser){
+    if(err){
+            console.log(err);
+        }
+        else{
+           if(request.body.firstName){
+                founduser.firstName=request.body.firstName;        
+             }
+            if(request.body.lastName){
+                founduser.lastName=request.body.lastName;        
+             }
+            if(request.body.email){
+                founduser.email=request.body.email;        
+             }
+            if(request.body.contact){
+                founduser.contact=request.body.contact;        
+             }
+            if(request.body.address){
+                founduser.address=request.body.address;        
+             }
+            if(request.body.pincode){
+                founduser.pincode=request.body.pincode;        
+             }  
+            if(request.body.gender){
+                founduser.gender=request.body.gender;        
+             }         
 
+             founduser.save(function(err,updatedobject){
+                if (err) {
+                    console.log(err);
+                }
+                else{
+                    response.render("private/profile");
+                }
+             }); 
+        }
+    });
+});
 app.post('/cart', (request, response) => {
     if (!request.user) {
         return response.status(403).redirect('login');
@@ -117,6 +159,56 @@ app.get('/cart', (request, response) => {
                 userCart: userWithCart.cart,
                 total: total
             });
+        }
+    });
+});
+
+app.get('/checkout', (request, response) => {
+    if (!request.user) {
+        return response.status(403).redirect('login');
+    }
+
+    return response.status(200).render('private/checkout');
+});
+
+app.post('/checkout', (request, response) => {
+    if (!request.user) {
+        return response.status(403).redirect('login');
+    }
+
+    let userId = request.user._id;
+    User.findOne({
+        _id: userId
+    }).populate('cart.item').exec((err, userWithCart) => {
+        if (err) {
+            console.log(err);
+            return response.status(500).redirect('login');
+        }
+        if (userWithCart) {
+            let cart = userWithCart.cart;
+            let history = userWithCart.history;
+
+            for (let i = 0; i < cart.length; i ++) {
+                let historyDocument = {
+                    date: new Date().toISOString(),
+                    price: cart[i].price,
+                    quantity: cart[i].quantity,
+                    item: cart[i].item
+                };
+                history.push(historyDocument);
+            }
+
+            if (cart.length > 0) {
+                cart = [];
+                userWithCart.cart = cart;
+                userWithCart.history = history;
+                userWithCart.save().then((savedUser) => {
+                    return response.status(200).redirect('profile');
+                }).catch(err => {
+                    console.log(err);
+                    return response.status(500).redirect('profile');
+                });
+            }
         }
     });
 });
