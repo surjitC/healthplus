@@ -2,16 +2,15 @@
 <h2>Cart</h2>
 <div class="uk-container">
 <% for(let i = 0; i < userCart.length; i ++) { %>
-    <div class="uk-card uk-card-default uk-grid-collapse uk-child-width-1-2@s uk-margin text-center" uk-grid>
+    <div class="uk-card uk-card-default uk-grid-collapse uk-child-width-1-2@s uk-margin text-center uk-padding" uk-grid>
         <div class="uk-card-media-left uk-cover-container">
-            <img src=<%= userCart[i].item.image %> alt=<%= userCart[i].item.name %> >
+            <img src=<%= userCart[i].item.image %> alt=<%= userCart[i].item.name %> width=200>
         </div>
         <div>
             <div class="uk-card-body">
-                <h1 class=""><%= userCart[i].item.name %></h1>
-                <p>Quantity: <%= userCart[i].quantity %></p>
+                <h3 class=""><%= userCart[i].item.name %><span class="uk-badge"><%= userCart[i].quantity%></span></h3>
                 <span class="uk-label"><%= userCart[i].item.category %></span>
-                <h2><i class="fa fa-rupee-sign"></i><%= userCart[i].price %></h2>
+                <h3><i class="fa fa-rupee-sign"></i><%= userCart[i].price %></h3>
                 <form method="POST" action="/cart">
                     <input type="hidden" name="delete-item" value=<%= userCart[i].item._id %>>
                     <button class="uk-button uk-button-danger" type="submit">Remove from Cart</button>
@@ -27,7 +26,7 @@
     </div>
 <% } else { %>
     <div class="text-center">
-        <button class="uk-button uk-button-secondary uk-button-large"><i class="fa fa-credit-card button-icon"></i> Proceed to Checkout<br/><i class="fa fa-rupee-sign"></i> <%= total %></button>
+        <a href="/checkout"><button class="uk-button uk-button-secondary uk-button-large" type="submit"><i class="fa fa-credit-card button-icon"></i> Proceed to Checkout<br/><i class="fa fa-rupee-sign"></i> <%= total %></button></a>
     </div>
 <% } %>
 </div>

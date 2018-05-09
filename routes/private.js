@@ -121,4 +121,54 @@ app.get('/cart', (request, response) => {
     });
 });
 
+app.get('/checkout', (request, response) => {
+    if (!request.user) {
+        return response.status(403).redirect('login');
+    }
+
+    return response.status(200).render('private/checkout');
+});
+
+app.post('/checkout', (request, response) => {
+    if (!request.user) {
+        return response.status(403).redirect('login');
+    }
+
+    let userId = request.user._id;
+    User.findOne({
+        _id: userId
+    }).populate('cart.item').exec((err, userWithCart) => {
+        if (err) {
+            console.log(err);
+            return response.status(500).redirect('login');
+        }
+        if (userWithCart) {
+            let cart = userWithCart.cart;
+            let history = userWithCart.history;
+
+            for (let i = 0; i < cart.length; i ++) {
+                let historyDocument = {
+                    date: new Date().toISOString(),
+                    price: cart[i].price,
+                    quantity: cart[i].quantity,
+                    item: cart[i].item
+                };
+                history.push(historyDocument);
+            }
+
+            if (cart.length > 0) {
+                cart = [];
+                userWithCart.cart = cart;
+                userWithCart.history = history;
+                userWithCart.save().then((savedUser) => {
+                    return response.status(200).redirect('profile');
+                }).catch(err => {
+                    console.log(err);
+                    return response.status(500).redirect('profile');
+                });
+            }
+        }
+    });
+});
+
 module.exports = app;

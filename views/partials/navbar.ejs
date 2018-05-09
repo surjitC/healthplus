@@ -10,9 +10,16 @@
             <div id="offcanvas-menu" uk-offcanvas>
                 <div class="uk-offcanvas-bar uk-flex uk-flex-column">
                     <ul class="uk-nav uk-nav-primary uk-nav-center uk-margin-auto-vertical">
-                        <li class="uk-nav-header">
-                            <a href="/login">Login | Signup</a>
-                        </li>
+                        <% if(!user) { %>
+                            <li class="uk-nav-header">
+                                <a href="/login">Login | Signup</a>
+                            </li>
+                        <% } else { %>
+                            <li class="uk-nav-header">
+                                <a href="/profile"><%= user.firstName %></a>
+                                <a href="/cart"><i class="fa fa-shopping-cart"></i><span class="uk-badge"><%= user.cart.length %></span></a>
+                            </li>
+                        <% } %>
                         <li class="uk-divider-icon"></li>
                         <li class="uk-parent uk-nav-header">
                             <a href="#">Products</a>
@@ -108,11 +115,14 @@
                     <li class="navbar-login-button">
                         <a href="/login"><button class="uk-button uk-button-default">Login | Signup</button></a>
                     </li>
-                    <% } else { %>
-                        <li class="navbar-login-button">
+                <% } else { %>
+                    <li class="navbar-login-button">
                         <a href="/profile"><button class="uk-button uk-button-default"><%= user.firstName %></button></a>
-                        </li>
-                        <% } %>
+                    </li>
+                    <li class="">
+                        <a href="/cart"><i class="fa fa-shopping-cart"></i><span class="uk-badge"><%= user.cart.length %></span></a>
+                    </li>
+                <% } %>
             </ul>
         </div>
 

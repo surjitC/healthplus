@@ -1,0 +1,57 @@
+<%- layout('layout') -%>
+<script src="assets/card/card.js"></script>
+<h2>Checkout</h2>
+<div class="card-wrapper">
+    <form class="uk-form-stacked payment-form uk-padding uk-container uk-width-1-2@m" method="post" action="checkout">
+        <div uk-grid>
+            <div class="uk-margin uk-width-1-2@m">
+                <label class="uk-form-label" for="checkout-card-number">Card Number</label>
+                <div class="uk-form-controls">
+                    <input class="uk-input uk-form-width-large" name="checkout-card-number" id="checkout-card-number" type="text">
+                </div>
+            </div>
+            <div class="uk-width-1-2@m">
+                <label class="uk-form-label" for="checkout-card-name">Name</label>
+                <div class="uk-form-controls">
+                    <input class="uk-input uk-form-width-large"  name="checkout-card-name" id="checkout-card-name" type="text">
+                </div>
+            </div>
+        </div>
+        <div uk-grid>
+            <div class="uk-width-1-2@s uk-width-1-4@m">
+                <label class="uk-form-label" for="checkout-card-date">Expiry Date</label>
+                <div class="uk-form-controls">
+                    <input class="uk-input uk-form-width-small" name="checkout-card-date" id="checkout-card-date" type="text">
+                </div>
+            </div>
+            <div class="uk-width-1-2@s uk-width-1-4@m">
+                <label class="uk-form-label" for="checkout-card-cvv">CVV</label>
+                <div class="uk-form-controls">
+                    <input class="uk-input uk-form-width-small" name="checkout-card-cvv" id="checkout-card-cvv" type="password">
+                </div>
+            </div>
+        </div>
+        <div class="text-center uk-margin">
+            <button type="submit" class="uk-button uk-button-primary"><i class="fa fa-credit-card button-icon"></i> Pay</button>
+        </div>
+    </form>
+</div>
+<script>
+    var card = new Card({
+        form: '.payment-form',
+        container: '.card-wrapper',
+        formSelectors: {
+            numberInput: 'input[name="checkout-card-number"]',
+            nameInput: 'input[name="checkout-card-name"]',
+            expiryInput: 'input[name="checkout-card-date"]',
+            cvcInput: 'input[name="checkout-card-cvv"]'
+        },
+        placeholders: {
+            number: '**** **** **** ****',
+            name: 'Narendra Modi',
+            expiry: '**/****',
+            cvc: '***'
+        },
+        debug: true
+    });
+</script>
