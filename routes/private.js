@@ -15,7 +15,49 @@ app.get("/welcome", (request, response) => {
         response.status(403).render("global/sorry");
     }
 });
+app.post("/profile", (request, response) => {
+    if (!request.user) {
+        return response.status(403).redirect('login');
+    }
+    let userId = request.user._id;
+    User.findOne({_id: userId}).exec(function(err,founduser){
+    if(err){
+            console.log(err);
+        }
+        else{
+           if(request.body.firstName){
+                founduser.firstName=request.body.firstName;        
+             }
+            if(request.body.lastName){
+                founduser.lastName=request.body.lastName;        
+             }
+            if(request.body.email){
+                founduser.email=request.body.email;        
+             }
+            if(request.body.contact){
+                founduser.contact=request.body.contact;        
+             }
+            if(request.body.address){
+                founduser.address=request.body.address;        
+             }
+            if(request.body.pincode){
+                founduser.pincode=request.body.pincode;        
+             }  
+            if(request.body.gender){
+                founduser.gender=request.body.gender;        
+             }         
 
+             founduser.save(function(err,updatedobject){
+                if (err) {
+                    console.log(err);
+                }
+                else{
+                    response.render("private/profile");
+                }
+             }); 
+        }
+    });
+});
 app.post('/cart', (request, response) => {
     if (!request.user) {
         return response.status(403).redirect('login');
