@@ -44,6 +44,12 @@ body{
 	text-decoration: none;
 }
 
+.login-button > button {
+	background-color: #db3236;
+	color: white;
+	border-radius: 10px;
+}
+
 /* profile page */
 .profile-image, .product-image{
 	/* border-radius: 100%; */
