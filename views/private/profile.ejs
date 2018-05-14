@@ -1,65 +1,65 @@
 <%- layout('layout') -%>
-    <h2>Welcome <%= user.firstName %></h2>
-    <a href="/logout">Logout</a>
+<h2>Welcome <%= user.firstName %></h2>
+<a href="/logout">Logout</a>
  <div class="uk-container">   
- <div class="uk-grid uk-animation-toggle" >
-    <div class="uk-width-1-3@m uk-animation-fade">
-        <img class="profile-image" src="assets/light.jpg" alt="Image">
-    </div>
-    <div class="uk-width-2-3@m">
-        <table class="uk-table">
-    <tbody>
-        <tr>
-            <td>Name :</td>
-            <td><%= user.firstName %> <%= user.lastName %></td>
-        </tr>
-        <tr>
-            <td>email :</td>
-            <td><%= user.email %></td>
-        </tr>
-        <tr>
-            <td>Contact No</td>
-            <td>
-                <% if (user.contact) { %>
-                          <%= user.contact %>
-                        <% } else { %>
-                            Add new Contact
-                        <% } %>
-            </td>
-        </tr>
-        <tr>
-            <td>Address</td>
-            <td>
-                <% if (user.address) { %>
-                          <%= user.address %>
-                        <% } else { %>
-                            Add new Address
-                        <% } %>
-            </td>
-        </tr>
-        <tr>
-            <td>Pincode</td>
-            <td>
-                <% if (user.pincode) { %>
-                          <%= user.pincode %>
-                        <% } else { %>
-                            Add new Pincode
-                        <% } %>
-            </td>
-        </tr>
-        <tr>
-            <td>Gender</td>
-            <td>
-                <% if (user.gender) { %>
-                          <%= user.gender %>
-                        <% } else { %>
-                            Add new gender
-                        <% } %>
-            </td>
-        </tr>
-    </tbody>
-</table>
+     <div class="uk-grid uk-animation-toggle" >
+        <div class="uk-width-1-3@m uk-animation-fade">
+            <img class="profile-image" src="assets/light.jpg" alt="Image">
+        </div>
+        <div class="uk-width-2-3@m">
+            <table class="uk-table">
+                <tbody>
+                    <tr>
+                        <td>Name :</td>
+                        <td><%= user.firstName %> <%= user.lastName %></td>
+                    </tr>
+                    <tr>
+                        <td>email :</td>
+                        <td><%= user.email %></td>
+                    </tr>
+                    <tr>
+                        <td>Contact No</td>
+                        <td>
+                            <% if (user.contact) { %>
+                            <%= user.contact %>
+                            <% } else { %>
+                                --
+                            <% } %>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Address</td>
+                        <td>
+                            <% if (user.address) { %>
+                            <%= user.address %>
+                            <% } else { %>
+                                --
+                            <% } %>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Pincode</td>
+                        <td>
+                            <% if (user.pincode) { %>
+                            <%= user.pincode %>
+                            <% } else { %>
+                                --
+                            <% } %>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Gender</td>
+                        <td>
+                            <% if (user.gender) { %>
+                            <%= user.gender %>
+                            <% } else { %>
+                                --
+                            <% } %>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <a href="/editProfile" class="text-center"><button class="uk-button uk-button-secondary">edit profile</button></a>
+        </div>
     </div>
 </div>
-</div>
-<a href="/editprofile"><button class="uk-button uk-button-secondary">edit profile</button></a>
