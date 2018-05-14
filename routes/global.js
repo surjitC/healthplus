@@ -292,13 +292,6 @@ app.get('/logout', (req, res) => {
         res.redirect('/sorry');
     }
 });
-app.get('/profile', (req, res) => {
-    if (req.user) {
-        res.render('private/profile');
-    } else {
-        res.redirect('/sorry');
-    }
-});
 app.get('/auth/google',
     passport.authenticate('google', {
         scope: ['profile', 'email']

@@ -15,6 +15,30 @@ app.get("/welcome", (request, response) => {
         response.status(403).render("global/sorry");
     }
 });
+
+app.get('/profile', (request, response) => {
+    if (!request.user) {
+        return response.status(403).redirect('login');
+    }
+
+    let userId = request.user._id;
+    User.findOne({
+        _id: userId
+    }).populate('history.item').exec((err, userWithHistory) => {
+        if (err) {
+            return response.status(500).redirect('login');
+        }
+        
+        if (userWithHistory) {
+            return response.status(200).render('private/profile', {
+                user: userWithHistory
+            });
+        } else {
+            return response.status(404).redirect('/sorry');
+        }
+    });
+});
+
 app.post("/profile", (request, response) => {
     if (!request.user) {
         return response.status(403).redirect('login');
