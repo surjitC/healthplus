@@ -14,261 +14,245 @@ app.get('/', (req, res) => {
 });
 
 app.get('/medicines', (req, res) => {
-    let products=new Product();
-	 Product.find({category : "medicines"}).exec(function(err,products){
-		if(err){
-			console.log(err);
-		}
-		else{
-			res.render('global/medicines',{
+    let products = new Product();
+    Product.find({
+        category: "medicines"
+    }).exec(function(err, products) {
+        if (err) {
+            console.log(err);
+        } else {
+            res.render('global/medicines', {
+                products: products
+            });
+        }
 
-    			products: products
-				
-    		});		
-		}
-
-	});
+    });
 });
-app.get('/medicines/:id',(req,res)=>{
-	console.log("my product",req.params.id);
-	let product=new Product();
-	Product.findOne({_id : req.params.id}).exec(function(err,product){
-	if(err){
-			console.log(err);
-		}
-		else{
-			res.render('global/productpage',{
-
-    			product: product
-				
-    		});		
-		}		
-	});
+app.get('/medicines/:id', (req, res) => {
+    console.log("my product", req.params.id);
+    let product = new Product();
+    Product.findOne({
+        _id: req.params.id
+    }).exec(function(err, product) {
+        if (err) {
+            console.log(err);
+        } else {
+            res.render('global/productpage', {
+                product: product
+            });
+        }
+    });
 });
 app.get('/dietsNsupplements', (req, res) => {
-    let products=new Product();
-	 Product.find({category : "dietsNsupplements"}).exec(function(err,products){
-		if(err){
-			console.log(err);
-		}
-		else{
-			res.render('global/dietsNsupplements',{
+    let products = new Product();
+    Product.find({
+        category: "dietsNsupplements"
+    }).exec(function(err, products) {
+        if (err) {
+            console.log(err);
+        } else {
+            res.render('global/dietsNsupplements', {
+                products: products
+            });
+        }
 
-    			products: products
-				
-    		});		
-		}
-
-	});
+    });
 });
-app.get('/dietsNsupplements/:id',(req,res)=>{
-	console.log("my product",req.params.id);
-	let product=new Product();
-	Product.findOne({_id : req.params.id}).exec(function(err,product){
-	if(err){
-			console.log(err);
-		}
-		else{
-			res.render('global/productpage',{
-
-    			product: product
-				
-    		});		
-		}		
-	});
+app.get('/dietsNsupplements/:id', (req, res) => {
+    console.log("my product", req.params.id);
+    let product = new Product();
+    Product.findOne({
+        _id: req.params.id
+    }).exec(function(err, product) {
+        if (err) {
+            console.log(err);
+        } else {
+            res.render('global/productpage', {
+                product: product
+            });
+        }
+    });
 });
 app.get('/bodycare', (req, res) => {
-	let products=new Product();
-	 Product.find({category : "bodycare"}).exec(function(err,products){
-		if(err){
-			console.log(err);
-		}
-		else{
-			res.render('global/bodycare',{
+    let products = new Product();
+    Product.find({
+        category: "bodycare"
+    }).exec(function(err, products) {
+        if (err) {
+            console.log(err);
+        } else {
+            res.render('global/bodycare', {
+                products: products
+            });
+        }
 
-    			products: products
-				
-    		});		
-		}
-
-	});
+    });
     console.log(products);
 });
-app.get('/bodycare/:id',(req,res)=>{
-	console.log("my product",req.params.id);
-	let product=new Product();
-	Product.findOne({_id : req.params.id}).exec(function(err,product){
-	if(err){
-			console.log(err);
-		}
-		else{
-			res.render('global/productpage',{
-
-    			product: product
-				
-    		});		
-		}		
-	});
+app.get('/bodycare/:id', (req, res) => {
+    console.log("my product", req.params.id);
+    let product = new Product();
+    Product.findOne({
+        _id: req.params.id
+    }).exec(function(err, product) {
+        if (err) {
+            console.log(err);
+        } else {
+            res.render('global/productpage', {
+                product: product
+            });
+        }
+    });
 });
 app.get('/healthNfitness', (req, res) => {
-    let products=new Product();
-	 Product.find({category : "healthNfitness"}).exec(function(err,products){
-		if(err){
-			console.log(err);
-		}
-		else{
-			res.render('global/healthNfitness',{
+    let products = new Product();
+    Product.find({
+        category: "healthNfitness"
+    }).exec(function(err, products) {
+        if (err) {
+            console.log(err);
+        } else {
+            res.render('global/healthNfitness', {
+                products: products
+            });
+        }
 
-    			products: products
-				
-    		});		
-		}
-
-	});
+    });
 });
-app.get('/healthNfitness/:id',(req,res)=>{
-	console.log("my product",req.params.id);
-	let product=new Product();
-	Product.findOne({_id : req.params.id}).exec(function(err,product){
-	if(err){
-			console.log(err);
-		}
-		else{
-			res.render('global/productpage',{
-
-    			product: product
-				
-    		});		
-		}		
-	});
+app.get('/healthNfitness/:id', (req, res) => {
+    console.log("my product", req.params.id);
+    let product = new Product();
+    Product.findOne({
+        _id: req.params.id
+    }).exec(function(err, product) {
+        if (err) {
+            console.log(err);
+        } else {
+            res.render('global/productpage', {
+                product: product
+            });
+        }
+    });
 });
 app.get('/yogatrainer', (req, res) => {
-    let services=new Service();
-	 Service.find({category : "yogatrainer"}).exec(function(err,services){
-		if(err){
-			console.log(err);
-		}
-		else{
-			res.render('global/yogatrainer',{
+    let services = new Service();
+    Service.find({
+        category: "yogatrainer"
+    }).exec(function(err, services) {
+        if (err) {
+            console.log(err);
+        } else {
+            res.render('global/yogatrainer', {
+                services: services
+            });
+        }
 
-    			services: services
-				
-    		});		
-		}
-
-	});
+    });
 });
-app.get('/yogatrainer/:id',(req,res)=>{
-	console.log("my service",req.params.id);
-	let service=new Service();
-	Service.findOne({_id : req.params.id}).exec(function(err,service){
-	if(err){
-			console.log(err);
-		}
-		else{
-			res.render('global/servicepage',{
-
-    			service: service
-				
-    		});		
-		}		
-	});
+app.get('/yogatrainer/:id', (req, res) => {
+    console.log("my service", req.params.id);
+    let service = new Service();
+    Service.findOne({
+        _id: req.params.id
+    }).exec(function(err, service) {
+        if (err) {
+            console.log(err);
+        } else {
+            res.render('global/servicepage', {
+                service: service
+            });
+        }
+    });
 });
 app.get('/personaltrainer', (req, res) => {
-    let services=new Service();
-	 Service.find({category : "personaltrainer"}).exec(function(err,services){
-		if(err){
-			console.log(err);
-		}
-		else{
-			res.render('global/personaltrainer',{
+    let services = new Service();
+    Service.find({
+        category: "personaltrainer"
+    }).exec(function(err, services) {
+        if (err) {
+            console.log(err);
+        } else {
+            res.render('global/personaltrainer', {
+                services: services
+            });
+        }
 
-    			services: services
-				
-    		});		
-		}
-
-	});
+    });
 });
-app.get('/personaltrainer/:id',(req,res)=>{
-	console.log("my service",req.params.id);
-	let service=new Service();
-	Service.findOne({_id : req.params.id}).exec(function(err,service){
-	if(err){
-			console.log(err);
-		}
-		else{
-			res.render('global/servicepage',{
-
-    			service: service
-				
-    		});		
-		}		
-	});
+app.get('/personaltrainer/:id', (req, res) => {
+    console.log("my service", req.params.id);
+    let service = new Service();
+    Service.findOne({
+        _id: req.params.id
+    }).exec(function(err, service) {
+        if (err) {
+            console.log(err);
+        } else {
+            res.render('global/servicepage', {
+                service: service
+            });
+        }
+    });
 });
 app.get('/homemasseur', (req, res) => {
-   let services=new Service();
-	 Service.find({category : "homemasseur"}).exec(function(err,services){
-		if(err){
-			console.log(err);
-		}
-		else{
-			res.render('global/homemasseur',{
+    let services = new Service();
+    Service.find({
+        category: "homemasseur"
+    }).exec(function(err, services) {
+        if (err) {
+            console.log(err);
+        } else {
+            res.render('global/homemasseur', {
+                services: services
+            });
+        }
 
-    			services: services
-				
-    		});		
-		}
-
-	}); 
+    });
 });
-app.get('/homemasseur/:id',(req,res)=>{
-	console.log("my service",req.params.id);
-	let service=new Service();
-	Service.findOne({_id : req.params.id}).exec(function(err,service){
-	if(err){
-			console.log(err);
-		}
-		else{
-			res.render('global/servicepage',{
-
-    			service: service
-				
-    		});		
-		}		
-	});
+app.get('/homemasseur/:id', (req, res) => {
+    console.log("my service", req.params.id);
+    let service = new Service();
+    Service.findOne({
+        _id: req.params.id
+    }).exec(function(err, service) {
+        if (err) {
+            console.log(err);
+        } else {
+            res.render('global/servicepage', {
+                service: service
+            });
+        }
+    });
 });
 app.get('/hometesting', (req, res) => {
-    let services=new Service();
-	 Service.find({category : "hometesting"}).exec(function(err,services){
-		if(err){
-			console.log(err);
-		}
-		else{
-			res.render('global/hometesting',{
+    let services = new Service();
+    Service.find({
+        category: "hometesting"
+    }).exec(function(err, services) {
+        if (err) {
+            console.log(err);
+        } else {
+            res.render('global/hometesting', {
+                services: services
+            });
+        }
 
-    			services: services
-				
-    		});		
-		}
-
-	});
+    });
 });
-app.get('/hometesting/:id',(req,res)=>{
-	console.log("my service",req.params.id);
-	let service=new Service();
-	Service.findOne({_id : req.params.id}).exec(function(err,service){
-	if(err){
-			console.log(err);
-		}
-		else{
-			res.render('global/servicepage',{
-
-    			service: service
-				
-    		});		
-		}		
-	});
+app.get('/hometesting/:id', (req, res) => {
+    console.log("my service", req.params.id);
+    let service = new Service();
+    Service.findOne({
+        _id: req.params.id
+    }).exec(function(err, service) {
+        if (err) {
+            console.log(err);
+        } else {
+            res.render('global/servicepage', {
+                service: service
+            });
+        }
+    });
 });
 app.get('/ambulance', (req, res) => {
     res.render('global/ambulance');
@@ -289,10 +273,10 @@ app.get('/about', (req, res) => {
     res.render('global/about');
 });
 app.get('/login', (req, res) => {
-	if (req.user) {
-		return res.status(200).redirect('/profile');
-	}
-	return res.render('global/login');
+    if (req.user) {
+        return res.status(200).redirect('/profile');
+    }
+    return res.render('global/login');
 });
 app.get('/signup', (req, res) => {
     res.render('global/signup');
@@ -315,24 +299,6 @@ app.get('/profile', (req, res) => {
         res.redirect('/sorry');
     }
 });
-// app.post('/signup', (req, res) => {
-// 	// res.json(req.body);
-// 	let user = new User();
-// 	user.googleID = "";
-// 	user.firstName = req.body.firstName;
-// 	user.lastName = req.body.lastName;
-// 	user.email = req.body.email;
-// 	user.password = req.body.password;
-// 	user.location = req.body.location;
-// 	User.findOne({ email: req.body.email }, (err, existingUser) => {
-// 		if (existingUser) {
-// 			console.log("email exists");
-// 		} else {
-// 			user.save();
-// 		}
-// 	});
-
-// });
 app.get('/auth/google',
     passport.authenticate('google', {
         scope: ['profile', 'email']
@@ -344,7 +310,4 @@ app.get('/auth/google/callback',
         failureRedirect: '/sorry'
     })
 );
-app.get('/editprofile', (req, res) => {
-    res.render('private/editprofile');
-});
 module.exports = app;
