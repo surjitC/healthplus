@@ -20,44 +20,53 @@ app.post("/profile", (request, response) => {
         return response.status(403).redirect('login');
     }
     let userId = request.user._id;
-    User.findOne({_id: userId}).exec(function(err,founduser){
-    if(err){
+    User.findOne({
+        _id: userId
+    }).exec(function(err, founduser) {
+        if (err) {
             console.log(err);
-        }
-        else{
-           if(request.body.firstName){
-                founduser.firstName=request.body.firstName;        
-             }
-            if(request.body.lastName){
-                founduser.lastName=request.body.lastName;        
-             }
-            if(request.body.email){
-                founduser.email=request.body.email;        
-             }
-            if(request.body.contact){
-                founduser.contact=request.body.contact;        
-             }
-            if(request.body.address){
-                founduser.address=request.body.address;        
-             }
-            if(request.body.pincode){
-                founduser.pincode=request.body.pincode;        
-             }  
-            if(request.body.gender){
-                founduser.gender=request.body.gender;        
-             }         
+        } else {
+            if (request.body.firstName) {
+                founduser.firstName = request.body.firstName;
+            }
+            if (request.body.lastName) {
+                founduser.lastName = request.body.lastName;
+            }
+            if (request.body.email) {
+                founduser.email = request.body.email;
+            }
+            if (request.body.contact) {
+                founduser.contact = request.body.contact;
+            }
+            if (request.body.address) {
+                founduser.address = request.body.address;
+            }
+            if (request.body.pincode) {
+                founduser.pincode = request.body.pincode;
+            }
+            if (request.body.gender) {
+                founduser.gender = request.body.gender;
+            }
 
-             founduser.save(function(err,updatedobject){
+            founduser.save(function(err, updatedobject) {
                 if (err) {
                     console.log(err);
-                }
-                else{
+                } else {
                     response.render("private/profile");
                 }
-             }); 
+            });
         }
     });
 });
+
+app.get('/editProfile', (request, response) => {
+    if (!request.user) {
+        return response.status(403).redirect('login');
+    }
+
+    return response.render('private/editprofile');
+});
+
 app.post('/cart', (request, response) => {
     if (!request.user) {
         return response.status(403).redirect('login');
@@ -71,10 +80,10 @@ app.post('/cart', (request, response) => {
             let userCart = user.cart;
             let productId = request.body["product-id"];
             let itemToBeDeleted = request.body["delete-item"];
-            
+
             if (productId) {
                 let foundInCart = false;
-                for (let i = 0; i < userCart.length; i ++) {
+                for (let i = 0; i < userCart.length; i++) {
                     if (userCart[i].item == productId) {
                         foundInCart = true;
                         console.log("FOUND IN CART");
@@ -83,7 +92,7 @@ app.post('/cart', (request, response) => {
                         userCart[i].price += Number(userCart[i].price);
                     }
                 }
-                
+
                 if (!foundInCart) {
                     Product.findOne({
                         _id: productId
@@ -103,15 +112,15 @@ app.post('/cart', (request, response) => {
                     });
                 } else {
                     user.cart = userCart;
-                    return user.save();    
+                    return user.save();
                 }
             } else if (itemToBeDeleted) {
                 console.log("ITEM TO BE DELETED");
                 console.log(itemToBeDeleted);
-                for(let i = 0; i < userCart.length; i ++) {
+                for (let i = 0; i < userCart.length; i++) {
                     console.log("ITEM BEING CHECKED");
                     console.log(userCart[i].item);
-        
+
                     if (userCart[i].item == itemToBeDeleted) {
                         userCart.splice(i, 1);
                     }
@@ -145,12 +154,12 @@ app.get('/cart', (request, response) => {
         if (userWithCart) {
             let userCart = userWithCart.cart;
             let total = 0;
-            for (let i = 0; i < userCart.length; i ++) {
+            for (let i = 0; i < userCart.length; i++) {
                 console.log("PRICE OF ITEM");
                 console.log(userCart[i].price);
                 total += Number(userCart[i].price);
             }
-            
+
             if (isNaN(total)) {
                 return response.status(500).send("Something went wrong with your cart. Please contact support support@healthplus.com");
             }
@@ -188,7 +197,7 @@ app.post('/checkout', (request, response) => {
             let cart = userWithCart.cart;
             let history = userWithCart.history;
 
-            for (let i = 0; i < cart.length; i ++) {
+            for (let i = 0; i < cart.length; i++) {
                 let historyDocument = {
                     date: new Date().toISOString(),
                     price: cart[i].price,
