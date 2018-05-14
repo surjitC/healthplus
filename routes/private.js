@@ -67,6 +67,38 @@ app.get('/editProfile', (request, response) => {
     return response.render('private/editprofile');
 });
 
+app.post('/editProfile', (request, response) => {
+    if (!request.user) {
+        return response.status(403).redirect('login');
+    }
+
+    let {contact, address, pincode, gender} = request.body;
+
+    User.findOne({
+        _id: request.user._id
+    }).then((currentUser) => {
+        if (contact) {
+            currentUser.contact = contact;
+        }
+        if (address) {
+            currentUser.address = address;
+        }
+        if (pincode) {
+            currentUser.pincode = pincode;
+        }
+        if (gender) {
+            currentUser.gender = gender;
+        }
+
+        return currentUser.save();
+    }).then(savedUser => {
+        return response.status(200).redirect('profile');
+    }).catch(err => {
+        console.log(err);
+        return response.redirect(500).redirect('login');
+    })
+})
+
 app.post('/cart', (request, response) => {
     if (!request.user) {
         return response.status(403).redirect('login');
