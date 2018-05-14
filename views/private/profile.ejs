@@ -81,7 +81,7 @@
                         <input type="hidden" name="history_id" value=<%= user.history[i]._id %>>
                         <td><%= user.history[i].date.toISOString().substring(0, 10) %></td>
                         <td><%= user.history[i].item.name %></td>
-                        <td><%= user.history[i].price %></td>
+                        <td><i class="fa fa-rupee-sign"></i><%= user.history[i].price %></td>
                         <td><button type="submit" class="uk-button uk-button-primary">Invoice</button></td>
                     </form>
                 </tr>
