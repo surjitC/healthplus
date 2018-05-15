@@ -105,17 +105,17 @@
                     <td>
                         <% if (user.type) { %>
                             <select class="uk-select uk-form-width-medium" name="type">
-                                <% if(user.type === 'ServiceProvider') { %>
+                                <% if(user.type === 'Professional Service Provider') { %>
                                     <option selected>Professional Service Provider</option>
                                 <% } else { %>
                                     <option>Professional Service Provider</option>
                                 <% } %>
-                                <% if(user.type === 'Doctor') { %>
+                                <% if(user.type === 'Professional Doctor') { %>
                                     <option selected>Professional Doctor</option>
                                 <% } else { %>
                                     <option>Professional Doctor</option>
                                 <% } %>
-                                <% if(user.type === 'User') { %>
+                                <% if(user.type === 'Consumer') { %>
                                     <option selected>Consumer</option>
                                 <% } else { %>
                                     <option>Consumer</option>

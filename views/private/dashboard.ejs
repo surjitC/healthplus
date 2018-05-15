@@ -1,0 +1,85 @@
+<%- layout('layout') -%>
+<div class="uk-container">
+    <h2>Dashboard</h2>
+    <ul class="uk-flex-center" uk-tab>
+        <li><a href="/dashboard/addService">Services</a></li>
+        <li class="uk-active"><a href="/dashboard/requests">Requests</a></li>
+        <li><a href="/dashboard/accepted">Accepted</a></li>
+        <li><a href="/dashboard/rejected">Rejected</a></li>
+    </ul>
+
+    <ul class="uk-switcher uk-margin">
+        <li>
+            <div uk-grid>
+                <div class="uk-width-auto@m">
+                    <ul class="uk-tab-left" uk-tab="connect: #dashboard-services">
+                        <li><a href="#">Add New Service</a></li>
+                        <li class="uk-active"><a href="#">Your Service</a></li>
+                    </ul>
+                </div>
+                <div class="uk-width-expand@m">
+                    <ul class="uk-switcher uk-margin" id="dashboard-services">
+                        <li>
+                            <h3>Add New Service</h3>
+                            <div class="uk-container text-center">
+                                <form method="post" action="/services">
+                                    <table class="uk-table uk-table-responsive uk-table-divider text-center">
+                                        <tbody>
+                                            <tr>
+                                                <td>Name</td>
+                                                <td>
+                                                    <input type="text" name="name" class="uk-input uk-form-width-medium">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Price</td>
+                                                <td>
+                                                    <input type="number" name="price" class="uk-input uk-form-width-medium">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Image</td>
+                                                <td>
+                                                    <input type="text" name="image" class="uk-input uk-form-width-large">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Location</td>
+                                                <td>
+                                                    <input type="text" name="location" class="uk-input uk-form-width-medium">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Category</td>
+                                                <td>
+                                                    <select class="uk-select uk-form-width-medium" name="category">
+                                                        <option value="" selected disabled>Choose Category</option>
+                                                        <option>yogatrainer</option>
+                                                        <option>personaltrainer</option>
+                                                        <option>homemasseur</option>
+                                                        <option>hometesting</option>
+                                                    </select>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <button type="submit" class="uk-button uk-button-secondary">Submit</button>
+                                </form>
+                            </div>
+                        </li>
+                        <li>Your Services</li>
+                    </ul>
+                </div>
+            </div>
+        </li>
+        <li>
+            Requests
+        </li>
+        <li>
+            Accepted
+        </li>
+        <li>
+            Rejected
+        </li>
+    </ul>
+</div>
