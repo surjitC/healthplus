@@ -6,6 +6,7 @@ const googleStrategy = require('passport-google-oauth20').Strategy;
 
 const User = mongoose.model('User');
 const Product = mongoose.model('Products');
+const Service = mongoose.model('Services');
 
 app.get("/welcome", (request, response) => {
     console.log(request.user);
@@ -280,6 +281,37 @@ app.post('/checkout', (request, response) => {
                 });
             }
         }
+    });
+});
+
+app.get('/dashboard', (request, response) => {
+    if (!request.user) {
+        return response.status(403).redirect('/login');
+    }
+
+    return response.status(200).render('private/dashboard');
+});
+
+app.post('/services', (request, response) => {
+    if (!request.user) {
+        return response.status(403).redirect('/login');
+    }
+
+    let {name, price, image, category} = request.body;
+    if (!name || !price || !image || !category) {
+        return response.status(400).redirect('/dashboard');
+    }
+
+    let myService = new Service();
+    myService.name = name;
+    myService.price = price;
+    myService.image = image;
+    myService.category = category;
+    myService.save().then(savedService => {
+        return response.status(200).redirect('/dashboard');
+    }).catch(error => {
+        console.log(error);
+        return response.status(500).redirect('/profile');
     });
 });
 
