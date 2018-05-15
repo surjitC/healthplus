@@ -58,6 +58,10 @@ body{
 	padding: 20px;
 }
 
+.history-heading > tr > th {
+	text-align: center;
+}
+
 /* product page */
 .button-icon {
 	padding-right: 10px;
