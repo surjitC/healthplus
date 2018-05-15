@@ -2,10 +2,10 @@ let mongoose = require('mongoose');
 let Schema = mongoose.Schema;
 
 let serviceSchema = new Schema({
-	firstName: String,
-	lastName: String,
+	name: String,
 	price: String,
 	category: String,
+	location: String,
 	image: String,
 });
 
