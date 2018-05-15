@@ -39,7 +39,7 @@
                     <td>Contact Number</td>
                     <td>
                         <% if (user.contact) { %>
-                            <input type="tel" id="phone" name="contact" value=<%= user.contact %>>
+                            <input type="tel" id="phone" name="contact" value=<%= user.contact %> class="uk-input">
                             <span id="valid-msg" class="hide">✓ Valid</span>
                             <span id="error-msg" class="hide">Invalid number</span>
                         <% } else { %>
@@ -63,7 +63,7 @@
                     <td>Pincode </td>
                     <td>
                         <% if (user.pincode) { %>
-                            <input type="text" name="pincode" value=<%= user.pincode %> class="uk-input uk-form-width-medium">
+                            <input type="text" name="pincode"  class="uk-input uk-form-width-medium" value=<%= user.pincode %>>
                         <% } else { %>
                             <input type="text" name="pincode" class="uk-input uk-form-width-medium">
                         <% } %>
@@ -100,6 +100,37 @@
                         <% } %>
                     </td>
                 </tr>
+                <tr>
+                    <td>How do you intend to use the platform?</td>
+                    <td>
+                        <% if (user.type) { %>
+                            <select class="uk-select uk-form-width-medium" name="type">
+                                <% if(user.type === 'ServiceProvider') { %>
+                                    <option selected>Professional Service Provider</option>
+                                <% } else { %>
+                                    <option>Professional Service Provider</option>
+                                <% } %>
+                                <% if(user.type === 'Doctor') { %>
+                                    <option selected>Professional Doctor</option>
+                                <% } else { %>
+                                    <option>Professional Doctor</option>
+                                <% } %>
+                                <% if(user.type === 'User') { %>
+                                    <option selected>Consumer</option>
+                                <% } else { %>
+                                    <option>Consumer</option>
+                                <% } %>
+                            </select>
+                        <% } else { %>
+                            <select class="uk-select uk-form-width-medium" name="type">
+                                <option value="" selected disabled hidden>Type</option>
+                                <option>Professional Service Provider</option>
+                                <option>Professional Doctor</option>
+                                <option>User</option>
+                            </select>
+                        <% } %>
+                    </td>
+                </tr>
             </tbody>
         </table>
         <br/>
@@ -115,7 +146,8 @@
     // initialise plugin
     telInput.intlTelInput({
         utilsScript: "assets/int-tel-input/js/utils.js",
-        initialCountry: "auto",
+        seperateDialCode: true,
+        hiddenInput: "full_phone",
         geoIpLookup: function(callback) {
             $.get('https://ipinfo.io', function() {}, "jsonp").always(function(resp) {
                 var countryCode = (resp && resp.country) ? resp.country : "";
@@ -126,7 +158,6 @@
     });
 
     let reset = function() {
-        console.log("Calling reset");
         telInput.removeClass("error");
         errorMsg.addClass("hide");
         validMsg.addClass("hide");
