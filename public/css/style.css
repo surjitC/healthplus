@@ -96,3 +96,8 @@ body{
 		background-image: url("path/to/flags@2x.png");
 	}
 }
+
+/* Blog Styles */
+.blog-text {
+	font-size: 25px;
+}
