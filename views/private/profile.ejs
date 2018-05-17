@@ -69,7 +69,7 @@
                 </tbody>
             </table>
             <a href="/editProfile" class="text-center"><button class="uk-button uk-button-secondary">edit profile</button></a>
-            <% if (user.type !== "Consumer") { %>
+            <% if (user.type !== "Consumer" && user.type) { %>
                 <a href="/dashboard" class="text-center"><button class="uk-button uk-button-primary text-center">Dashboard</button></a>
             <% } %>
         </div>
