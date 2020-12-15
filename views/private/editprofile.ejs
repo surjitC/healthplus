@@ -1,96 +1,181 @@
 <%- layout('layout') -%>
-    <!-- <h2>Welcome <%= user.firstName %></h2> -->
+<link rel="stylesheet" type="text/css" href="assets/int-tel-input/css/intlTelInput.css">
+<script src="assets/int-tel-input/js/intlTelInput.min.js"></script>
  <div class="uk-container text-center">
- <form method="post" action="/profile">
-  
-<table class="uk-table uk-table-hover uk-table-responsive uk-table-divider">
-    <thead>
-        <tr>
-            <th>Shrink</th>
-            <th>Expand</th>
-            
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>First Name</td>
-            <td>
-                <% if (user.firstName) { %>
-                          <%= user.firstName %>
+     <form method="post" action="/editProfile">
+        <table class="uk-table uk-table-hover uk-table-responsive uk-table-divider">
+            <tbody>
+                <tr>
+                    <td>First Name</td>
+                    <td>
+                        <% if (user.firstName) { %>
+                            <%= user.firstName %>
                         <% } else { %>
-                            <input type="text" name="firstName">
+                            <input type="text" name="firstName" class="uk-input">
                         <% } %>
-            </td>
-           
-        </tr>
-        <tr>
-            <td>Last Name</td>
-            <td>
-                <% if (user.lastName) { %>
-                          <%= user.lastName %>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Last Name</td>
+                    <td>
+                        <% if (user.lastName) { %>
+                            <%= user.lastName %>
                         <% } else { %>
-                            <input type="text" name="lastName">
+                            <input type="text" name="lastName" class="uk-input">
                         <% } %>
-            </td>
-           
-        </tr>
-        <tr>
-            <td>Email</td>
-            <td>
-                <% if (user.email) { %>
-                          <%= user.email %>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Email</td>
+                    <td>
+                        <% if (user.email) { %>
+                            <%= user.email %>
                         <% } else { %>
-                            <input type="email" name="email">
+                            <input type="email" name="email" class="uk-input">
                         <% } %>
-            </td>
-           
-        </tr>
-        <tr>
-            <td>Contact No</td>
-            <td>
-                <% if (user.contact) { %>
-                          <%= user.contact %>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Contact Number</td>
+                    <td>
+                        <% if (user.contact) { %>
+                            <input type="tel" id="phone" name="contact" value=<%= user.contact %> class="uk-input">
+                            <span id="valid-msg" class="hide">✓ Valid</span>
+                            <span id="error-msg" class="hide">Invalid number</span>
                         <% } else { %>
-                            <input type="number" name="contact">
+                            <input type="tel" id="phone" name="contact" class="uk-input">
+                            <span id="valid-msg" class="hide">✓ Valid</span>
+                            <span id="error-msg" class="hide">Invalid number</span>
                         <% } %>
-            </td>
-           
-        </tr>
-        <tr>
-            <td>Address </td>
-            <td>
-                <% if (user.address) { %>
-                          <%= user.address %>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Address </td>
+                    <td>
+                        <% if (user.address) { %>
+                            <textarea type="text" name="address" class="uk-textarea uk-form-width-large"><%= user.address %></textarea>
                         <% } else { %>
-                            <input type="text" name="address">
+                            <textarea type="text" name="address" class="uk-textarea uk-form-width-large"></textarea>
                         <% } %>
-            </td>
-           
-        </tr>
-        <tr>
-            <td>Pincode </td>
-            <td>
-                <% if (user.pincode) { %>
-                          <%= user.pincode %>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Pincode </td>
+                    <td>
+                        <% if (user.pincode) { %>
+                            <input type="text" name="pincode"  class="uk-input uk-form-width-medium" value=<%= user.pincode %>>
                         <% } else { %>
-                            <input type="number" name="pincode">
+                            <input type="text" name="pincode" class="uk-input uk-form-width-medium">
                         <% } %>
-            </td>
-           
-        </tr>
-        <tr>
-            <td>Gender</td>
-            <td>
-                <% if (user.gender) { %>
-                          <%= user.gender %>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Gender</td>
+                    <td>
+                        <% if (user.gender) { %>
+                            <select class="uk-select uk-form-width-medium" name="gender">
+                                <% if(user.gender === "Female") { %>
+                                    <option selected>Female</option>
+                                <% } else { %>
+                                    <option>Female</option>
+                                <% } %>
+                                <% if(user.gender === "Male") { %>
+                                    <option selected>Male</option>
+                                <% } else { %>
+                                    <option>Male</option>
+                                <% } %>
+                                <% if(user.gender === "Others") { %>
+                                    <option selected>Others</option>
+                                <% } else { %>
+                                    <option>Others</option>
+                                <% } %>
+                            </select>
                         <% } else { %>
-                            <input type="text" name="gender">
+                            <select class="uk-select uk-form-width-medium" name="gender">
+                                <option value="" selected disabled hidden>Choose Gender</option>
+                                <option>Female</option>
+                                <option>Male</option>
+                                <option>Others</option>
+                            </select>
                         <% } %>
-            </td>
-           
-        </tr>
-    </tbody>
-</table>
-<button class="uk-button uk-button-secondary">Submit</button>
-</form>
+                    </td>
+                </tr>
+                <tr>
+                    <td>How do you intend to use the platform?</td>
+                    <td>
+                        <% if (user.type) { %>
+                            <select class="uk-select uk-form-width-medium" name="type">
+                                <% if(user.type === 'Professional Service Provider') { %>
+                                    <option selected>Professional Service Provider</option>
+                                <% } else { %>
+                                    <option>Professional Service Provider</option>
+                                <% } %>
+                                <% if(user.type === 'Professional Doctor') { %>
+                                    <option selected>Professional Doctor</option>
+                                <% } else { %>
+                                    <option>Professional Doctor</option>
+                                <% } %>
+                                <% if(user.type === 'Consumer') { %>
+                                    <option selected>Consumer</option>
+                                <% } else { %>
+                                    <option>Consumer</option>
+                                <% } %>
+                            </select>
+                        <% } else { %>
+                            <select class="uk-select uk-form-width-medium" name="type">
+                                <option value="" selected disabled hidden>Type</option>
+                                <option>Professional Service Provider</option>
+                                <option>Professional Doctor</option>
+                                <option>User</option>
+                            </select>
+                        <% } %>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <br/>
+        <button type="submit" class="uk-button uk-button-secondary">Update</button>
+    </form>
 </div>
+
+<script>
+    let telInput = $("#phone"),
+        errorMsg = $("#error-msg"),
+        validMsg = $("#valid-msg");
+
+    // initialise plugin
+    telInput.intlTelInput({
+        utilsScript: "assets/int-tel-input/js/utils.js",
+        seperateDialCode: true,
+        hiddenInput: "full_phone",
+        geoIpLookup: function(callback) {
+            $.get('https://ipinfo.io', function() {}, "jsonp").always(function(resp) {
+                var countryCode = (resp && resp.country) ? resp.country : "";
+                callback(countryCode);
+            });
+        },
+        preferredCountries: ["in"]
+    });
+
+    let reset = function() {
+        telInput.removeClass("error");
+        errorMsg.addClass("hide");
+        validMsg.addClass("hide");
+    };
+
+    // on blur: validate
+    telInput.blur(function() {
+        reset();
+        if ($.trim(telInput.val())) {
+            if (telInput.intlTelInput("isValidNumber")) {
+                validMsg.removeClass("hide");
+            } else {
+                telInput.addClass("error");
+                errorMsg.removeClass("hide");
+            }
+        }
+    });
+
+    // on keyup / change flag: reset
+    telInput.on("keyup change", reset);
+</script>

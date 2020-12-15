@@ -6,6 +6,7 @@ const googleStrategy = require('passport-google-oauth20').Strategy;
 
 const User = mongoose.model('User');
 const Product = mongoose.model('Products');
+const Service = mongoose.model('Services');
 
 app.get("/welcome", (request, response) => {
     console.log(request.user);
@@ -15,49 +16,119 @@ app.get("/welcome", (request, response) => {
         response.status(403).render("global/sorry");
     }
 });
+
+app.get('/profile', (request, response) => {
+    if (!request.user) {
+        return response.status(403).redirect('login');
+    }
+
+    let userId = request.user._id;
+    User.findOne({
+        _id: userId
+    }).populate('history.item').exec((err, userWithHistory) => {
+        if (err) {
+            return response.status(500).redirect('login');
+        }
+        
+        if (userWithHistory) {
+            return response.status(200).render('private/profile', {
+                user: userWithHistory
+            });
+        } else {
+            return response.status(404).redirect('/sorry');
+        }
+    });
+});
+
 app.post("/profile", (request, response) => {
     if (!request.user) {
         return response.status(403).redirect('login');
     }
     let userId = request.user._id;
-    User.findOne({_id: userId}).exec(function(err,founduser){
-    if(err){
+    User.findOne({
+        _id: userId
+    }).exec(function(err, founduser) {
+        if (err) {
             console.log(err);
-        }
-        else{
-           if(request.body.firstName){
-                founduser.firstName=request.body.firstName;        
-             }
-            if(request.body.lastName){
-                founduser.lastName=request.body.lastName;        
-             }
-            if(request.body.email){
-                founduser.email=request.body.email;        
-             }
-            if(request.body.contact){
-                founduser.contact=request.body.contact;        
-             }
-            if(request.body.address){
-                founduser.address=request.body.address;        
-             }
-            if(request.body.pincode){
-                founduser.pincode=request.body.pincode;        
-             }  
-            if(request.body.gender){
-                founduser.gender=request.body.gender;        
-             }         
+        } else {
+            if (request.body.firstName) {
+                founduser.firstName = request.body.firstName;
+            }
+            if (request.body.lastName) {
+                founduser.lastName = request.body.lastName;
+            }
+            if (request.body.email) {
+                founduser.email = request.body.email;
+            }
+            if (request.body.contact) {
+                founduser.contact = request.body.contact;
+            }
+            if (request.body.address) {
+                founduser.address = request.body.address;
+            }
+            if (request.body.pincode) {
+                founduser.pincode = request.body.pincode;
+            }
+            if (request.body.gender) {
+                founduser.gender = request.body.gender;
+            }
 
-             founduser.save(function(err,updatedobject){
+            founduser.save(function(err, updatedobject) {
                 if (err) {
                     console.log(err);
-                }
-                else{
+                } else {
                     response.render("private/profile");
                 }
-             }); 
+            });
         }
     });
 });
+
+app.get('/editProfile', (request, response) => {
+    if (!request.user) {
+        return response.status(403).redirect('login');
+    }
+
+    return response.render('private/editprofile');
+});
+
+app.post('/editProfile', (request, response) => {
+    if (!request.user) {
+        return response.status(403).redirect('login');
+    }
+
+    console.log(request.body);
+
+    let {contact, full_phone, address, pincode, gender, type} = request.body;
+
+    User.findOne({
+        _id: request.user._id
+    }).then((currentUser) => {
+        if (full_phone) {
+            currentUser.contact = full_phone;
+        }
+        if (address) {
+            currentUser.address = address;
+        }
+        if (pincode) {
+            currentUser.pincode = pincode;
+        }
+        if (gender) {
+            currentUser.gender = gender;
+        }
+        if (type) {
+            currentUser.type = type;
+        }
+
+        return currentUser.save();
+    }).then(savedUser => {
+        return response.status(200).redirect('profile');
+    }).catch(err => {
+        console.log(err);
+        return response.status(500).redirect('login');
+    });
+});
+
 app.post('/cart', (request, response) => {
     if (!request.user) {
         return response.status(403).redirect('login');
@@ -71,10 +142,10 @@ app.post('/cart', (request, response) => {
             let userCart = user.cart;
             let productId = request.body["product-id"];
             let itemToBeDeleted = request.body["delete-item"];
-            
+
             if (productId) {
                 let foundInCart = false;
-                for (let i = 0; i < userCart.length; i ++) {
+                for (let i = 0; i < userCart.length; i++) {
                     if (userCart[i].item == productId) {
                         foundInCart = true;
                         console.log("FOUND IN CART");
@@ -83,7 +154,7 @@ app.post('/cart', (request, response) => {
                         userCart[i].price += Number(userCart[i].price);
                     }
                 }
-                
+
                 if (!foundInCart) {
                     Product.findOne({
                         _id: productId
@@ -103,15 +174,15 @@ app.post('/cart', (request, response) => {
                     });
                 } else {
                     user.cart = userCart;
-                    return user.save();    
+                    return user.save();
                 }
             } else if (itemToBeDeleted) {
                 console.log("ITEM TO BE DELETED");
                 console.log(itemToBeDeleted);
-                for(let i = 0; i < userCart.length; i ++) {
+                for (let i = 0; i < userCart.length; i++) {
                     console.log("ITEM BEING CHECKED");
                     console.log(userCart[i].item);
-        
+
                     if (userCart[i].item == itemToBeDeleted) {
                         userCart.splice(i, 1);
                     }
@@ -145,12 +216,12 @@ app.get('/cart', (request, response) => {
         if (userWithCart) {
             let userCart = userWithCart.cart;
             let total = 0;
-            for (let i = 0; i < userCart.length; i ++) {
+            for (let i = 0; i < userCart.length; i++) {
                 console.log("PRICE OF ITEM");
                 console.log(userCart[i].price);
                 total += Number(userCart[i].price);
             }
-            
+
             if (isNaN(total)) {
                 return response.status(500).send("Something went wrong with your cart. Please contact support support@healthplus.com");
             }
@@ -188,7 +259,7 @@ app.post('/checkout', (request, response) => {
             let cart = userWithCart.cart;
             let history = userWithCart.history;
 
-            for (let i = 0; i < cart.length; i ++) {
+            for (let i = 0; i < cart.length; i++) {
                 let historyDocument = {
                     date: new Date().toISOString(),
                     price: cart[i].price,
@@ -210,6 +281,37 @@ app.post('/checkout', (request, response) => {
                 });
             }
         }
+    });
+});
+
+app.get('/dashboard', (request, response) => {
+    if (!request.user) {
+        return response.status(403).redirect('/login');
+    }
+
+    return response.status(200).render('private/dashboard');
+});
+
+app.post('/services', (request, response) => {
+    if (!request.user) {
+        return response.status(403).redirect('/login');
+    }
+
+    let {name, price, image, category} = request.body;
+    if (!name || !price || !image || !category) {
+        return response.status(400).redirect('/dashboard');
+    }
+
+    let myService = new Service();
+    myService.name = name;
+    myService.price = price;
+    myService.image = image;
+    myService.category = category;
+    myService.save().then(savedService => {
+        return response.status(200).redirect('/dashboard');
+    }).catch(error => {
+        console.log(error);
+        return response.status(500).redirect('/profile');
     });
 });
 

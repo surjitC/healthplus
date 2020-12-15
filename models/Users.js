@@ -10,10 +10,11 @@ let userSchema = new Schema({
     password: String,
     firstName: String,
     lastName: String,
-    contact: Number,
+    contact: String,
     gender: String,
     pincode: String,
     address: String,
+    type: String,
     history: [{
         date: Date,
         price: {

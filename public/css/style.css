@@ -44,12 +44,22 @@ body{
 	text-decoration: none;
 }
 
+.login-button > button {
+	background-color: #db3236;
+	color: white;
+	border-radius: 10px;
+}
+
 /* profile page */
 .profile-image, .product-image{
 	/* border-radius: 100%; */
 	width: 300px;
 	height: 300px;
 	padding: 20px;
+}
+
+.history-heading > tr > th {
+	text-align: center;
 }
 
 /* product page */
@@ -63,4 +73,31 @@ body{
 
 .product-info {
 	padding-top: 20px;
+}
+
+.iti-flag {
+	background-image: url("../assets/int-tel-input/img/flags.png");
+}
+
+.hide {
+	display: none;
+}
+
+#valid-msg {
+	color: #20c934;
+}
+
+#error-msg {
+	color: #db3236;
+}
+
+@media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
+	.iti-flag {
+		background-image: url("path/to/flags@2x.png");
+	}
+}
+
+/* Blog Styles */
+.blog-text {
+	font-size: 25px;
 }

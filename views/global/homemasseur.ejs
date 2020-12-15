@@ -3,14 +3,14 @@
 <div class="uk-container">
     <div class="uk-child-width-1-4@m" uk-grid>
         <% for (var i = 0; i < services.length; i++) { %>   
-        <a href="/yogatrainer/<%= services[i]._id %>">
+        <a href="/homemasseur/<%= services[i]._id %>">
         <div>
             <div class="uk-card uk-card-default uk-card-hover">
                 <div class="uk-card-media-top">
                     <img src=<%= services[i].image %> ">
                 </div>
                 <div class="uk-card-body">
-                    <h3 class="uk-card-title"><%= services[i].firstName %></h3>
+                    <h3 class="uk-card-title"><%= services[i].name %></h3>
                     <button class="uk-button uk-button-danger">Rs <%= services[i].price %></button>
                 </div>
             </div>
